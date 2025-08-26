@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<canvas id="bgParticles"></canvas>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Daffa's personal portfolio showcasing web development skills, UI design, and bug hunting expertise." name="description"/>
+<meta content="Web Developer, UI Designer, Bug Hunter, Daffa portfolio" name="keywords"/>
+<meta content="Daffa" name="author"/>
+<title>Daffa | Portofolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+<style>
+	
+    /* Loader Fade Transition */
+    #loader {
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #0b001a;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(144, 0, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05), transparent 40%),
+    repeating-linear-gradient(135deg, rgba(190, 0, 255, 0.04) 0, rgba(255, 255, 255, 0.03) 2px, transparent 4px, transparent 6px);
+  background-size: 300% 300%;
+  animation: purplePulse 20s linear infinite;
+  scroll-behavior: smooth;
+}
+@keyframes purplePulse {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ae00ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(170, 0, 255, 0.4);
+}
+
+.typing::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.mobile-menu {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+}
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1c1f29;
+  padding: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: background-color 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards 0.5s;
+}
+.music-player:hover {
+  background-color: #6b49ff;
+}
+.music-player-icon {
+  font-size: 32px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.player-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #1a1d29;
+  color: white;
+  width: 320px;
+  border-radius: 15px;
+  display: none;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeInPlayer 0.5s forwards;
+}
+
+@keyframes fadeInPlayer {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-header h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #a8a8a8;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.player-controls button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.player-controls button:hover {
+  color: #6b49ff;
+}
+
+#closePlayer {
+  color: #ff6347;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+#closePlayer:hover {
+  color: #fff;
+}
+.buy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #c084fc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+.buy-btn:hover {
+  color: #a855f7;
+}
+#bgParticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+}
+
+  </style>
+  <script>
+  const canvas = document.getElementById("bgParticles");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let dots = Array.from({ length: 60 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    dx: 0.5 - Math.random(),
+    dy: 0.5 - Math.random()
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let dot of dots) {
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, 1.5, 0, 2 * Math.PI);
+      ctx.fillStyle = "#a855f7";
+      ctx.fill();
+      dot.x += dot.dx;
+      dot.y += dot.dy;
+      if (dot.x < 0 || dot.x > canvas.width) dot.dx *= -1;
+      if (dot.y < 0 || dot.y > canvas.height) dot.dy *= -1;
+    }
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+<link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet"/></head><body class="text-white">
+<!-- Loading Screen -->
+<div class="fixed inset-0 bg-[#0b001a] flex flex-col items-center justify-center z-[9999]" id="loader">
+<div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#ae00ff] mb-4"></div>
+<div class="text-[#ae00ff] text-xl font-semibold flex items-center gap-2 animate-pulse">
+<i class="fas fa-code"></i>
+<span>MEMUAT HALAMAN</span>
+</div>
+</div>
+<header class="fixed top-0 w-full bg-transparent z-50 backdrop-blur-md">
+<nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+<h1 class="text-xl font-bold flex items-center gap-2 gradient-text">
+<i class="fa-solid fa-code"></i> Daffa Putra
+      </h1>
+<!-- Hamburger Menu for Mobile -->
+<div class="lg:hidden flex items-center space-x-4 ml-auto">
+<button class="text-white text-2xl" id="hamburger">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+<!-- Navigation Links -->
+<div class="hidden lg:flex space-x-4">
+<a class="hover:text-purple-300" href="#home">Home</a>
+<a class="hover:text-purple-300" href="#skills-projects">Skills | Projects</a>
+</div>
+</nav>
+<!-- Mobile Menu -->
+<div class="mobile-menu absolute top-20 left-0 w-full bg-[#0b001a] text-white" id="mobile-menu">
+<div class="flex flex-col items-center space-y-4 py-4">
+<a class="hover:text-purple-300" href="#home">Home</a>
+<a class="hover:text-purple-300" href="#skills-projects">Skills | Projects</a>
+<a class="hover:text-purple-300" href="#contact">Contact</a>
+</div>
+</div>
+</header>
+<!-- Script loader -->
+<script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, 1000);
+    });
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script></body>
+</html>
+<!-- Home Section --><section class="min-h-screen pt-32 flex flex-col justify-center items-center text-center px-6" id="home">
+<img alt="avatar" class="w-48 h-48 rounded-full mb-6 shadow-xl" data-aos="zoom-in" src="https://files.catbox.moe/hgxu77.jpg"/>
+<h2 class="text-5xl font-bold mb-4 gradient-text animate-slideIn" style="animation-delay: 0.3s; animation-fill-mode: both;">Halo, saya Daffa</h2>
+<p class="text-2xl font-semibold gradient-text h-8" data-aos="fade-up" data-aos-delay="500" id="typingText"></p>
+<div class="flex gap-4 mt-6" data-aos="fade-up" data-aos-delay="800">
+<a class="text-xl hover:text-purple-300" href="https://github.com/DaffaDeveloper" target="_blank"><i class="fab fa-github"></i></a>
+<a class="text-xl hover:text-purple-300" href="https://whatsapp.com/channel/0029Vax6r4G3gvWRYOykWv0g" target="_blank"><i class="fab fa-whatsapp mr-2"></i></a>
+<a class="text-xl hover:text-purple-300" href="https://t.me/daffadevv" target="_blank"><i class="fab fa-telegram"></i></a>
+</div>
+</section><style>
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-slideIn {
+  animation: slideIn 0.8s ease-out forwards;
+}
+</style><script>
+  const roles = ["Web Developer", "UI Designer", "Bug Hunter"];
+  let currentRole = 0;
+  let currentChar = 0;
+  const typingText = document.getElementById("typingText");
+
+  function typeRole() {
+    if (currentChar <= roles[currentRole].length) {
+      typingText.textContent = roles[currentRole].substring(0, currentChar);
+      currentChar++;
+      setTimeout(typeRole, 100);
+    } else {
+      setTimeout(() => {
+        currentChar = 0;
+        currentRole = (currentRole + 1) % roles.length;
+        setTimeout(typeRole, 500);
+      }, 1200);
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", typeRole);
+</script>
+<!-- Skills & Projects Section -->
+<section class="py-20 px-6 mx-6" id="skills-projects">
+<div class="text-center mb-10">
+<h2 class="text-3xl font-bold gradient-text mb-4" data-aos="fade-up"><i class="fas fa-profile"></i>  About Me</h2>
+</div>
+<div class="max-w-3xl mx-auto bg-[#0f0c1c] rounded-lg p-6 shadow-md" data-aos="fade-up" data-aos-delay="200">
+<div class="flex items-center gap-3 mb-3">
+<i class="fas fa-user-secret text-purple-400 text-2xl"></i>
+<h3 class="text-xl font-semibold text-white">Daffa Putra</h3>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed">
+      Saya adalah seorang developer yang berfokus pada <span class="text-white font-semibold">bot WhatsApp interaktif</span>, 
+      pembuatan <span class="text-white font-semibold">script celah sistem</span> yang memicu efek khusus pada target, 
+      dan <span class="text-white font-semibold">pengembangan web</span> modern dengan desain responsif dan performa tinggi.  
+      Tujuan saya adalah membangun tools yang efisien, presisi, dan berdampak nyata.
+    </p>
+</div>
+<div class="flex justify-center gap-6 mb-6" data-aos="fade-up" data-aos-delay="300">
+<button class="px-6 py-2 bg-purple-600 rounded-full text-black font-bold hover:bg-purple-700 transition" onclick="showTab('skills')">Skills</button>
+<button class="px-6 py-2 bg-purple-600 rounded-full text-black font-bold hover:bg-purple-700 transition" onclick="showTab('projects')">Projects</button>
+</div>
+<div class="space-y-6 max-w-4xl mx-auto" id="skills">
+<div class="text-center text-xl font-bold text-purple-400" data-aos="fade-up">
+<i class="fas fa-laptop-code"></i> Tech Stack
+  </div>
+<!-- HTML -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-orange-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-html5 text-orange-500 text-2xl"></i>
+    <h3 class="text-lg font-semibold">HTML</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">Menguasai struktur semantik HTML5 untuk pembuatan layout dan aksesibilitas web.</p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-html" class="h-2.5 rounded-full bg-orange-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">95%</span>
+  </div>
+</div>
+
+<!-- CSS -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="50">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-blue-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-css3-alt text-blue-500 text-2xl"></i>
+    <h3 class="text-lg font-semibold">CSS</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">Mendesain UI responsif dengan Flexbox, Grid, dan animasi transisi modern.</p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-css" class="h-2.5 rounded-full bg-blue-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">90%</span>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="100">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-yellow-400 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-js text-yellow-400 text-2xl"></i>
+    <h3 class="text-lg font-semibold">JavaScript</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">DOM Manipulation, Fetch API, async/await, dan SPA development (React/Vanilla).</p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-js" class="h-2.5 rounded-full bg-yellow-400 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">90%</span>
+  </div>
+</div>
+
+<!-- PHP -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="150">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-indigo-400 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-php text-indigo-400 text-2xl"></i>
+    <h3 class="text-lg font-semibold">PHP</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">Pengembangan web dinamis, REST API sederhana, dan integrasi database MySQL.</p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-php" class="h-2.5 rounded-full bg-indigo-400 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">80%</span>
+  </div>
+</div>
+
+<!-- Python -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="200">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-blue-300 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-python text-blue-300 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Python</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">Scripting, web automation, Flask API, dan scraping menggunakan BeautifulSoup/Selenium.</p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-python" class="h-2.5 rounded-full bg-blue-300 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">75%</span>
+  </div>
+</div>
+
+<!-- Node.js -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="250">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-green-400 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-node text-green-400 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Node.js</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">Backend JS, REST API, WebSocket, CLI tools, dan pengembangan bot WhatsApp.</p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-node" class="h-2.5 rounded-full bg-green-400 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">88%</span>
+  </div>
+</div>
+
+<!-- Tailwind CSS -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="300">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-purple-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fas fa-paint-brush text-pink-400 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Tailwind CSS</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">Framework utility-first untuk mempercepat pengembangan UI responsif dan modern.</p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-tailwind" class="h-2.5 rounded-full bg-purple-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">85%</span>
+  </div>
+</div>
+<!-- Bug Hunter -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="350">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-red-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fas fa-bug text-red-500 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Bug Hunting</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Analisis keamanan, menemukan celah XSS/SQLi, dan pelaporan bug bounty di platform keamanan.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-bug" class="h-2.5 rounded-full bg-red-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">70%</span>
+  </div>
+</div>
+
+<!-- React -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="400">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-cyan-400 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-react text-cyan-400 text-2xl"></i>
+    <h3 class="text-lg font-semibold">React</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Pembuatan Single Page Application (SPA), hooks, state management, dan integrasi API.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-react" class="h-2.5 rounded-full bg-cyan-400 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">85%</span>
+  </div>
+</div>
+<!-- Express.js -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="450">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-green-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fas fa-server text-green-500 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Express.js</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Framework backend Node.js untuk REST API, middleware, autentikasi, dan routing server-side.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-express" class="h-2.5 rounded-full bg-green-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">80%</span>
+  </div>
+</div>
+
+<!-- MongoDB -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="500">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-emerald-400 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fas fa-database text-emerald-400 text-2xl"></i>
+    <h3 class="text-lg font-semibold">MongoDB</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Database NoSQL untuk penyimpanan data fleksibel berbasis dokumen JSON dengan performa tinggi.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-mongo" class="h-2.5 rounded-full bg-emerald-400 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">75%</span>
+  </div>
+</div>
+
+<!-- Firebase -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="550">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-yellow-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fas fa-fire text-yellow-500 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Firebase</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Layanan cloud Google untuk autentikasi, real-time database, hosting, dan push notification.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-firebase" class="h-2.5 rounded-full bg-yellow-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">70%</span>
+  </div>
+</div>
+
+<!-- Vue.js -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="650">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-green-400 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fab fa-vuejs text-green-400 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Vue.js</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Framework progresif untuk membangun UI interaktif, komponen modular, dan SPA.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-vue" class="h-2.5 rounded-full bg-green-400 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">70%</span>
+  </div>
+</div>
+
+<!-- TypeScript -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="700">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-blue-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fas fa-code text-blue-500 text-2xl"></i>
+    <h3 class="text-lg font-semibold">TypeScript</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Superset JavaScript dengan static typing, meningkatkan skalabilitas dan keamanan kode.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-ts" class="h-2.5 rounded-full bg-blue-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">80%</span>
+  </div>
+</div>
+<!-- Svelte -->
+<div class="relative bg-[#0f0c1c] rounded-lg p-5 pl-6 shadow-md" data-aos="fade-up" data-aos-delay="600">
+  <div class="absolute top-4 bottom-4 left-0 w-[3px] bg-orange-500 rounded-full"></div>
+  <div class="flex items-center gap-2 mb-1">
+    <i class="fas fa-code text-orange-500 text-2xl"></i>
+    <h3 class="text-lg font-semibold">Svelte</h3>
+  </div>
+  <p class="text-sm text-gray-300 mb-2">
+    Framework front-end ringan dengan reaktivitas bawaan, cepat, dan tanpa virtual DOM.
+  </p>
+  <div class="w-full rounded-full h-2.5 mt-1 relative bg-gray-700">
+    <div id="bar-svelte" class="h-2.5 rounded-full bg-orange-500 transition-all duration-1000" style="width: 0%;"></div>
+    <span class="absolute right-1 -top-5 text-sm text-gray-300 font-semibold">65%</span>
+  </div>
+</div>
+<script>
+window.addEventListener("load", () => {
+  setTimeout(() => document.getElementById("bar-html").style.width = "95%", 200);
+  setTimeout(() => document.getElementById("bar-css").style.width = "90%", 400);
+  setTimeout(() => document.getElementById("bar-js").style.width = "90%", 600);
+  setTimeout(() => document.getElementById("bar-php").style.width = "80%", 800);
+  setTimeout(() => document.getElementById("bar-python").style.width = "75%", 1000);
+  setTimeout(() => document.getElementById("bar-node").style.width = "88%", 1200);
+  setTimeout(() => document.getElementById("bar-tailwind").style.width = "85%", 1400);
+});
+</script>
+</div>
+</div>
+<div class="hidden space-y-6 max-w-4xl mx-auto" id="projects">
+<div class="text-center text-xl font-bold text-purple-400" data-aos="fade-up">
+<i class="fa-solid fa-terminal"></i> My Projects
+  </div>
+<div class="bg-[#0f0c1c] rounded-lg p-5 shadow-md" data-aos="fade-up">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-bug text-red-400 text-xl"></i>
+<h3 class="text-lg font-semibold">Function Bug WhatsApp</h3>
+</div>
+<p class="text-sm text-gray-300">Mengembangkan dan menguji bug WhatsApp seperti crash, stuck, delay.</p>
+</div>
+<div class="bg-[#0f0c1c] rounded-lg p-5 shadow-md" data-aos="fade-up">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-robot text-green-300 text-xl"></i>
+<h3 class="text-lg font-semibold">Script Bot WhatsApp</h3>
+</div>
+<p class="text-sm text-gray-300">Bot WhatsApp berbasis Node.js dengan multi features.</p>
+</div>
+<!-- RAVAGE 1-->
+<div class="swiper-slide scroll-reveal bg-[#0f0c1c] rounded-xl shadow-md p-4 flex flex-col gap-3 overflow-hidden !h-auto min-h-[600px]">
+  <img src="https://k.top4top.io/p_3279jfelr1.jpg" class="w-full aspect-square object-cover rounded" />
+  <div>
+    <h4 class="text-lg font-bold gradient-text">Script Ravage 1</h4>
+    <p class="text-sm text-gray-300 mt-1">Script Bug.</p>
+  </div>
+  <a href="https://t.me/daffadevv"
+     target="_blank"
+     class="buy-btn self-center">
+    <i class="fas fa-cart-shopping text-base mr-1"></i>
+    <span class="text-sm">Buy Script</span>
+  </a>
+</div>
+<!-- RAVAGE 2 -->
+<div class="swiper-slide scroll-reveal bg-[#0f0c1c] rounded-xl shadow-md p-4 flex flex-col gap-3 overflow-hidden !h-auto min-h-[600px]">
+  <img src="https://f.top4top.io/p_3320musil1.jpg" class="w-full aspect-square object-cover rounded" />
+  <div>
+    <h4 class="text-lg font-bold gradient-text">Script Ravage 2</h4>
+    <p class="text-sm text-gray-300 mt-1">Script Bug.</p>
+  </div>
+  <a href="https://t.me/daffadevv"
+     target="_blank"
+     class="buy-btn self-center">
+    <i class="fas fa-cart-shopping text-base mr-1"></i>
+    <span class="text-sm">Buy Script</span>
+  </a>
+</div>
+
+<!-- RAVAGE 3 -->
+<div class="swiper-slide scroll-reveal bg-[#0f0c1c] rounded-xl shadow-md p-4 flex flex-col gap-3 overflow-hidden !h-auto min-h-[600px]">
+  <img src="https://j.top4top.io/p_3340cuxis1.jpg" class="w-full aspect-square object-cover rounded" />
+  <div>
+    <h4 class="text-lg font-bold gradient-text">Script Ravage 3</h4>
+    <p class="text-sm text-gray-300 mt-1">Script Bug.</p>
+  </div>
+  <a href="https://t.me/daffadevv"
+     target="_blank"
+     class="buy-btn self-center">
+    <i class="fas fa-cart-shopping text-base mr-1"></i>
+    <span class="text-sm">Buy Script</span>
+  </a>
+</div>
+
+<!-- RAVAGE 4 -->
+<div class="swiper-slide scroll-reveal bg-[#0f0c1c] rounded-xl shadow-md p-4 flex flex-col gap-3 overflow-hidden !h-auto min-h-[600px]">
+  <img src="https://files.catbox.moe/dz0ikd.jpg" class="w-full aspect-square object-cover rounded" />
+  <div>
+    <h4 class="text-lg font-bold gradient-text">Script Ravage 4</h4>
+    <p class="text-sm text-gray-300 mt-1">Script Bug.</p>
+  </div>
+  <a href="https://t.me/daffadevv"
+     target="_blank"
+     class="buy-btn self-center">
+    <i class="fas fa-cart-shopping text-base mr-1"></i>
+    <span class="text-sm">Buy Script</span>
+  </a>
+</div>
+
+<!-- RAVAGE 5 -->
+<div class="swiper-slide scroll-reveal bg-[#0f0c1c] rounded-xl shadow-md p-4 flex flex-col gap-3 overflow-hidden !h-auto min-h-[600px]">
+  <img src="https://files.catbox.moe/dz0ikd.jpg" class="w-full aspect-square object-cover rounded" />
+  <div>
+    <h4 class="text-lg font-bold gradient-text">Script Ravage 5</h4>
+    <p class="text-sm text-gray-300 mt-1">Script Bug.</p>
+  </div>
+  <a href="https://t.me/daffadevv"
+     target="_blank"
+     class="buy-btn self-center">
+    <i class="fas fa-cart-shopping text-base mr-1"></i>
+    <span class="text-sm">Buy Script</span>
+  </a>
+</div>
+
+<script>
+let revealed = new Set();
+const scrollReveal = () => {
+  document.querySelectorAll('.scroll-reveal').forEach((el, i) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100 && !revealed.has(el)) {
+      setTimeout(() => {
+        el.classList.add('show');
+        revealed.add(el);
+      }, i * 200); // Delay animasi antar elemen
+    }
+  });
+};
+window.addEventListener('scroll', scrollReveal);
+window.addEventListener('load', scrollReveal);
+</script>
+
+<!-- Chat Box -->
+<div id="chatBox" class="fixed bottom-24 left-6 w-80 max-h-[80vh] bg-[#1a1d29] text-white rounded-xl shadow-2xl z-50 hidden flex flex-col overflow-hidden">
+  <!-- Header -->
+  <div class="bg-purple-600 px-4 py-3 flex justify-between items-center">
+    <h4 class="font-semibold">Auto AI Ravage</h4>
+    <button id="closeChat" class="text-white hover:text-gray-300">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Chat Content -->
+  <div id="chatContent" class="p-4 h-64 overflow-y-auto space-y-3 text-sm">
+    <!-- AI Salam -->
+    <div class="flex justify-start items-start gap-2">
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" class="w-7 h-7 rounded-full" />
+      <div class="bg-gray-700 px-3 py-2 rounded-lg max-w-[75%]">
+        Saya adalah Auto Ai Ravage yang dirancang oleh Daffa.
+      </div>
+    </div>
+    <div class="flex justify-start items-start gap-2">
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" class="w-7 h-7 rounded-full" />
+      <div class="bg-gray-700 px-3 py-2 rounded-lg max-w-[75%]">
+        Ada yang bisa saya bantu?
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="flex border-t border-gray-700">
+    <input id="chatInput" type="text" placeholder="Tulis pesan..." class="w-full px-4 py-2 bg-transparent text-white focus:outline-none"/>
+    <button id="sendChat" class="px-4 text-purple-400 hover:text-purple-300">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Chat Script -->
+<script>
+const chatIcon = document.getElementById('chatIcon');
+const chatBox = document.getElementById('chatBox');
+const closeChat = document.getElementById('closeChat');
+const sendChat = document.getElementById('sendChat');
+const chatInput = document.getElementById('chatInput');
+const chatContent = document.getElementById('chatContent');
+
+chatIcon.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
+
+sendChat.addEventListener('click', async () => {
+  const userMsg = chatInput.value.trim();
+  if (!userMsg) return;
+
+  // User Chat Bubble (Kanan)
+  const userBubble = document.createElement('div');
+  userBubble.className = "flex justify-end";
+  userBubble.innerHTML = `
+    <div class="bg-purple-700 px-3 py-2 rounded-lg max-w-[75%] text-right">
+      ${userMsg}
+    </div>
+  `;
+  chatContent.appendChild(userBubble);
+  chatContent.scrollTop = chatContent.scrollHeight;
+  chatInput.value = '';
+
+  // Bot Loading Bubble (Kiri)
+  const botBubble = document.createElement('div');
+  botBubble.className = "flex justify-start items-start gap-2";
+  botBubble.innerHTML = `
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" class="w-7 h-7 rounded-full" />
+    <div class="bg-gray-700 px-3 py-2 rounded-lg max-w-[75%] italic text-gray-400">Sedang mengetik...</div>
+  `;
+  chatContent.appendChild(botBubble);
+  chatContent.scrollTop = chatContent.scrollHeight;
+
+  // Fetch dari API
+  try {
+    const res = await fetch(`https://www.laurine.site/api/cai/prompt=${encodeURIComponent(userMsg)}`);
+    const data = await res.json();
+    botBubble.innerHTML = `
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" class="w-7 h-7 rounded-full" />
+      <div class="bg-gray-700 px-3 py-2 rounded-lg max-w-[75%]">
+        ${data.result || "Maaf, tidak ada respons."}
+      </div>
+    `;
+
+    // 🔊 Suara Ping!
+    const audio = new Audio('https://h.top4top.io/m_3455t09tx1.mp3');
+    audio.play();
+
+  } catch {
+    botBubble.innerHTML = `
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" class="w-7 h-7 rounded-full" />
+      <div class="bg-red-600 px-3 py-2 rounded-lg max-w-[75%]">Gagal mendapatkan respons.</div>
+    `;
+  }
+
+  chatContent.scrollTop = chatContent.scrollHeight;
+});
+</script>
+</section>
+<!-- Tombol Musik -->
+<div class="music-player" id="musicPlayerToggle">
+<i class="fas fa-music music-player-icon"></i>
+</div>
+<!-- Music Player UI -->
+<div id="playerContainer" class="player-container hidden">
+  <div class="player-header">
+    <h4 id="songTitle">Title</h4>
+    <button id="closePlayer">X</button>
+  </div>
+  <img id="songCover" src="https://placehold.co/300x150" alt="Cover" class="w-full h-40 object-cover rounded mt-2" />
+  <div class="text-center mt-2">
+    <p id="songArtist" class="text-sm text-gray-400">Artist</p>
+  </div>
+  <div class="player-controls mt-2">
+    <button id="prevSong"><i class="fas fa-backward"></i></button>
+    <button id="playPauseButton"><i class="fas fa-play"></i></button>
+    <button id="nextSong"><i class="fas fa-forward"></i></button>
+  </div>
+  <div class="px-2 mt-2">
+    <div class="flex justify-between text-xs text-gray-400">
+      <span id="currentTime">0:00</span>
+      <span id="duration">0:00</span>
+    </div>
+    <input type="range" id="progressBar" class="w-full mt-1" value="0" />
+  </div>
+</div>
+
+<audio id="musicPlayer">
+  <source id="songSource" src="" type="audio/mp3" />
+</audio>
+
+<footer class="py-6 text-center text-sm bg-transparent">
+  © 2025 <span class="gradient-text">Daffa Developer</span>. All rights reserved.
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ once: true });
+
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburger?.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open");
+  });
+
+  function showTab(tabId) {
+    document.getElementById("skills").classList.add("hidden");
+    document.getElementById("projects").classList.add("hidden");
+    document.getElementById(tabId).classList.remove("hidden");
+  }
+
+  const musicPlayerToggle = document.getElementById('musicPlayerToggle');
+  const playerContainer = document.getElementById('playerContainer');
+  const playPauseButton = document.getElementById('playPauseButton');
+  const musicPlayer = document.getElementById('musicPlayer');
+  const songTitle = document.getElementById('songTitle');
+  const songArtist = document.getElementById('songArtist');
+  const songCover = document.getElementById('songCover');
+  const songSource = document.getElementById('songSource');
+  const prevSongButton = document.getElementById('prevSong');
+  const nextSongButton = document.getElementById('nextSong');
+  const closePlayer = document.getElementById('closePlayer');
+  const progressBar = document.getElementById('progressBar');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationEl = document.getElementById('duration');
+
+  const songs = [
+  {
+    title: "Avangard",
+    artist: "Loknown",
+    url: "https://files.catbox.moe/yf1f58.mp3",
+    cover: "https://files.catbox.moe/72gf0h.jpg"
+  },
+  {
+    title: "Blue",
+    artist: "Yung Kai",
+    url: "https://files.catbox.moe/zxb6ch.mp3",
+    cover: "https://img1.pixhost.to/images/6482/610981574_yunilovejoo.jpg"
+  },
+  {
+    title: "8 Letters",
+    artist: "Why Don't We",
+    url: "https://files.catbox.moe/ewy8om.mp3",
+    cover: "https://img1.pixhost.to/images/6482/610981543_yunilovejoo.jpg"
+  }
+];
+
+  let currentSongIndex = 0;
+
+  function updatePlayerControls() {
+    const currentSong = songs[currentSongIndex];
+    songTitle.innerText = currentSong.title;
+    songArtist.innerText = currentSong.artist;
+    songCover.src = currentSong.cover;
+    songSource.src = currentSong.url;
+    musicPlayer.load();
+    playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+  }
+
+  musicPlayerToggle?.addEventListener('click', () => {
+    playerContainer.style.display = 'block';
+    updatePlayerControls();
+  });
+
+  closePlayer.addEventListener('click', () => {
+    playerContainer.style.display = 'none';
+    musicPlayer.pause();
+  });
+
+  playPauseButton.addEventListener('click', () => {
+    if (musicPlayer.paused) {
+      musicPlayer.play();
+      playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+    } else {
+      musicPlayer.pause();
+      playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+    }
+  });
+
+  prevSongButton.addEventListener('click', () => {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    updatePlayerControls();
+    musicPlayer.play();
+    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+  });
+
+  nextSongButton.addEventListener('click', () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updatePlayerControls();
+    musicPlayer.play();
+    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+  });
+
+  musicPlayer.addEventListener('timeupdate', () => {
+    const currentTime = musicPlayer.currentTime;
+    const duration = musicPlayer.duration;
+    const formatTime = (t) => {
+      const m = Math.floor(t / 60);
+      const s = Math.floor(t % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    };
+    currentTimeEl.innerText = formatTime(currentTime);
+    durationEl.innerText = formatTime(duration || 0);
+    progressBar.value = (currentTime / duration) * 100 || 0;
+  });
+
+  progressBar.addEventListener('input', () => {
+    musicPlayer.currentTime = (progressBar.value / 100) * musicPlayer.duration;
+  });
+
+  updatePlayerControls();
+</script>
+</body>
+</html>
