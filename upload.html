@@ -334,6 +334,60 @@ window.addEventListener("load",()=>{
   closeBtn.addEventListener("click",()=>{
     sidebar.classList.remove("active");
   });
+
+const form = document.getElementById("form");
+const linkDiv = document.getElementById("link");
+
+// Buat progress bar
+const progressBar = document.createElement("div");
+progressBar.style.width = "0%";
+progressBar.style.height = "20px";
+progressBar.style.background = "#00d4ff";
+progressBar.style.marginTop = "10px";
+progressBar.style.borderRadius = "5px";
+document.getElementById("upload").appendChild(progressBar);
+
+form.onsubmit = e => {
+  e.preventDefault();
+  if(fileInput.files.length === 0){
+    alert("Pilih file dulu!");
+    return;
+  }
+
+  const xhr = new XMLHttpRequest();
+  const fd = new FormData();
+  fd.append("file", fileInput.files[0]);
+
+  xhr.upload.onprogress = e => {
+    if(e.lengthComputable){
+      const percent = Math.round((e.loaded / e.total) * 100);
+      progressBar.style.width = percent + "%";
+      progressBar.textContent = percent + "%";
+    }
+  };
+
+  xhr.onload = () => {
+    if(xhr.status === 200){
+      const res = JSON.parse(xhr.responseText);
+      if(res.status){
+        linkDiv.innerHTML = `Sukses! <br> Link: <a href="${res.url}" target="_blank">${res.url}</a>`;
+        progressBar.style.width = "100%";
+        progressBar.textContent = "100%";
+      }else{
+        linkDiv.textContent = `Gagal upload: ${res.message}`;
+      }
+    } else {
+      linkDiv.textContent = "Server error!";
+    }
+  };
+
+  xhr.onerror = () => {
+    linkDiv.textContent = "Gagal upload, periksa koneksi.";
+  };
+
+  xhr.open("POST","upload.php",true);
+  xhr.send(fd);
+};
 </script>
 </body>
 </html>
