@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DB Number — Login & Dashboard</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#0b0f1a;
+      --card:#101628;
+      --muted:#9aa4c7;
+      --text:#e8ecff;
+      --primary:#9b5cff;   /* purple */
+      --secondary:#00d4ff; /* cyan */
+      --accent:#6dd6ff;
+      --ring: rgba(155,92,255,.6);
+      --glass: rgba(255,255,255,.06);
+      --success:#38d39f;
+      --danger:#ef476f;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background: radial-gradient(80% 60% at 10% 10%, rgba(155,92,255,.15), transparent 40%),
+                                   radial-gradient(70% 60% at 90% 0%, rgba(0,212,255,.12), transparent 40%),
+                                   linear-gradient(180deg,#0a0f1a 0%, #0a0f1a 60%, #0b1120 100%);
+      color:var(--text); font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; overflow-x:hidden;
+    }
+    a{color:inherit}/* Header */
+.nav{
+  position:fixed; inset:0 0 auto 0; height:64px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; background:linear-gradient(90deg, rgba(16,22,40,.6), rgba(16,22,40,.2)); backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.06); z-index:50;
+}
+.brand{display:flex; align-items:center; gap:12px; font-weight:700}
+.logo{width:34px;height:34px; border-radius:12px; background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow:0 0 22px rgba(155,92,255,.35), 0 0 28px rgba(0,212,255,.22);}
+.brand h1{font-family:Orbitron, Poppins; font-size:18px; letter-spacing:1px; margin:0}
+
+.hamburger{width:44px;height:44px; border-radius:14px; display:grid; place-items:center; cursor:pointer;
+  background:var(--glass); border:1px solid rgba(255,255,255,.08); transition:.25s;}
+.hamburger:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.35)}
+
+/* Drawer */
+.drawer{
+  position:fixed; inset:64px auto 0 0; width:290px; background:linear-gradient(180deg, #0d1324, #0a0f1a);
+  border-right:1px solid rgba(255,255,255,.06); transform:translateX(-100%); transition:transform .35s ease;
+  z-index:40; padding:18px 16px; overflow-y:auto; box-shadow: 10px 0 40px rgba(0,0,0,.35)
+}
+.drawer.open{transform:translateX(0)}
+.menu h4{font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:1.2px; margin:16px 12px}
+.menu a{display:flex; align-items:center; gap:12px; padding:12px 14px; margin:6px 6px; border-radius:14px; text-decoration:none; font-weight:500;
+  background:transparent; border:1px solid transparent; transition:.25s}
+.menu a:hover{background:var(--glass); border-color:rgba(255,255,255,.06)}
+.menu a.active{background:linear-gradient(90deg, rgba(155,92,255,.16), rgba(0,212,255,.10)); border-color:rgba(155,92,255,.25)}
+
+/* Layout */
+.container{max-width:1100px; margin:100px auto 60px; padding:0 18px}
+
+/* Cards */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08); border-radius:22px; padding:22px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+.card + .card{margin-top:18px}
+.title{font-family:Orbitron; letter-spacing:1px; margin:0 0 6px; font-size:22px}
+.subtitle{margin:0 0 18px; color:var(--muted); font-size:14px}
+
+/* Forms */
+.input, select{
+  width:100%; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.1);
+  background:rgba(7,10,20,.6); color:var(--text); outline:none; transition:.2s; font-size:14px
+}
+.input:focus, select:focus{border-color:var(--ring); box-shadow:0 0 0 3px rgba(155,92,255,.18)}
+.row{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+.btn{
+  display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; border:1px solid transparent;
+  background:linear-gradient(90deg, var(--primary), var(--secondary)); color:white; cursor:pointer; font-weight:600;
+  letter-spacing:.3px; box-shadow:0 10px 26px rgba(155,92,255,.35), 0 4px 16px rgba(0,212,255,.25); transition:.25s
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent; border-color:rgba(255,255,255,.12)}
+.btn.danger{background:linear-gradient(90deg, #ff6a88, #ff99ac)}
+
+/* Table */
+table{width:100%; border-collapse:separate; border-spacing:0 10px}
+th{ text-align:left; font-size:12px; color:var(--muted); font-weight:600}
+td{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); padding:12px 14px; border-left:none; border-right:none}
+tr{ border-radius:12px}
+
+/* Hero / Login */
+.hero{
+  min-height:calc(100vh - 64px); display:grid; place-items:center; padding:28px 18px; position:relative;
+}
+.glow{position:absolute; inset:auto auto 10% -10%; width:320px; height:320px; border-radius:50%; filter:blur(60px);
+  background: radial-gradient(circle at 30% 30%, rgba(155,92,255,.28), transparent 60%),
+              radial-gradient(circle at 70% 60%, rgba(0,212,255,.25), transparent 60%);
+  opacity:.7; pointer-events:none}
+.login{
+  display:grid; grid-template-columns: 1.1fr 1fr; gap:30px; align-items:center; max-width:980px; width:100%;
+}
+.illus{padding:20px}
+.illus h2{font-family:Orbitron; font-size:48px; line-height:1.05; margin:0 0 12px}
+.illus p{color:var(--muted)}
+
+.login-card{padding:22px; border-radius:22px}
+.badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:12px; color:#dfe7ff;
+  background:linear-gradient(90deg, rgba(155,92,255,.22), rgba(0,212,255,.18)); border:1px solid rgba(255,255,255,.12)}
+
+/* Animations */
+.reveal{opacity:0; transform: translateY(18px); filter: blur(6px);}
+.reveal.visible{opacity:1; transform:none; filter:none; transition: opacity .8s ease, transform .8s ease, filter .8s ease}
+.reveal.left{transform: translateX(-24px)}
+.reveal.right{transform: translateX(24px)}
+
+/* Utility */
+.hidden{display:none !important}
+.flex{display:flex; gap:12px; align-items:center}
+.space{height:18px}
+.chip{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
+
+@media (max-width:900px){
+  .login{grid-template-columns:1fr}
+  .illus h2{font-size:38px}
+  .row{grid-template-columns:1fr}
+}
+
+  </style>
+</head>
+<body>
+  <!-- Nav -->
+  <header class="nav">
+    <div class="brand">
+      <i class="fas fa-user-secret"></i> <h1>Daffa Dev</h1>
+    </div>
+    <div id="userBadge" class="chip hidden"><<i class="fas fa-user"></i><span id="who"></span></div>
+    <button id="btnHamburger" class="hamburger hidden" aria-label="Menu">
+  <i class="fa-solid fa-bars"></i>
+</button>
+  </header>  <!-- Drawer -->  <aside id="drawer" class="drawer">
+    <nav class="menu">
+      <h4>Navigasi</h4>
+      <a href="#" data-view="dashboard" class="active"><i class="fa-solid fa-home"></i> Dashboard</a>
+      <a href="#" data-view="numbers"><i class="fa-solid fa-square-plus"></i> Add Nomor</a>
+      <a href="#" data-view="list"><i class="fa-solid fa-list-ul"></i> List Nomor</a>
+      <div id="adminSection" class="hidden">
+        <h4>Admin</h4>
+        <a href="#" data-view="accounts"><i class="fa-solid fa-user-gear"></i> Manage Account</a>
+      </div>
+      <h4>Lainnya</h4>
+      <a href="#" id="btnLogout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+    </nav>
+  </aside>  <!-- LOGIN -->  <main id="view-login" class="hero">
+    <div class="glow"></div>
+    <section class="login">
+      <div class="illus reveal left">
+        <span class="badge"><i class="fa-solid fa-database"></i> Storage</span>
+        <h2>Databaseㅤㅤ <span style="background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;background-clip:text;color:transparent">Ravage</span></h2>
+        <p>Menciptakan platform manajemen data nomor yang aman, modern, dan responsif, di mana setiap pengguna dapat menambahkan dan mengakses data dengan mudah, serta memberi kendali penuh kepada admin untuk mengelola akun dan database secara efisien.</p>
+        <div class="space"></div>
+        <div class="flex">
+          <a href="https://github.com/DaffaDeveloper" target="_blank" class="chip" style="text-decoration: none; color: inherit;">
+  <i class="fa-brands fa-github"></i> GitHub
+</a>
+<a href="https://about-daffaa.vercel.app" target="_blank" class="chip" 
+   style="text-decoration: none !important; color: inherit;">
+  <i class="fas fa-address-card"></i> My Portofolio
+</a>
+          <span class="chip"><i class="fa-solid fa-shield"></i> High Protection</span>
+        </div>
+      </div>
+      <div class="card login-card reveal right" style="max-width:420px; width:100%">
+        <h3 class="title">Masuk</h3>
+        <p class="subtitle">Silahkan Masukan Akun Yang Telah terdaftar.</p>
+        <form id="formLogin">
+          <div class="row">
+            <div>
+              <label>Username</label>
+              <input id="username" class="input" placeholder="nama pengguna" required />
+            </div>
+            <div>
+              <label>Password</label>
+              <input id="password" class="input" type="password" placeholder="••••••" required />
+            </div>
+          </div>
+          <div class="space"></div>
+          <button class="btn" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+          <div id="loginMsg" class="subtitle" style="margin-top:12px"></div>
+        </form>
+      </div>
+    </section>
+  </main>  <!-- DASHBOARD -->  <main id="view-dashboard" class="container hidden">
+      <section class="card reveal">
+    <h3 class="title">
+      <span class="bg1">Selamat datang</span>
+    </h3>
+    <p class="subtitle">
+      <span class="bg2">Silahkan Klik Opsi Menu Yang Berada Di Kanan Atas.</span>
+    </p>
+</h3>
+    <p class="subtitle">
+      <span class="bg3">Status user adalah untuk <b>Reseller</b> 
+  dan Status Admin adalah untuk <b>Partner</b>
+</span>
+    </p>
+      <div class="flex">
+        <span class="chip"><i class="fa-solid fa-address-card"></i> Status :</span>
+        <span class="chip"><i class="fa-solid fa-user-shield"></i> <span id="roleChip">user</span></span>
+      </div>
+    </section>
+  </main>  <!-- ADD NUMBER -->  <main id="view-numbers" class="container hidden">
+    <section class="card reveal left">
+      <h3 class="title"><i class="fa-solid fa-square-plus"></i> Tambah Nomor</h3>
+      <p class="subtitle">Masukkan nomor (contoh: 62812345678).</p>
+      <div class="row">
+        <input id="numberInput" class="input" placeholder="Hanya angka…" />
+        <button id="btnAddNumber" class="btn"><i class="fa-solid fa-plus"></i> Tambah</button>
+      </div>
+      <div id="numMsg" class="subtitle" style="margin-top:12px"></div>
+    </section>
+  </main>  <!-- LIST NUMBERS -->  <main id="view-list" class="container hidden">
+    <section class="card reveal right">
+      <h3 class="title"><i class="fa-solid fa-list"></i> Daftar Nomor</h3>
+      <p class="subtitle">Semua nomor yang tersimpan di Database.</p>
+      <div class="space"></div>
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr><th>No</th><th>Nomor</th><th>Opsi</th></tr>
+          </thead>
+          <tbody id="numbersTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>  <!-- ACCOUNTS (ADMIN) -->  <main id="view-accounts" class="container hidden">
+    <section class="card reveal">
+      <h3 class="title"><i class="fa-solid fa-user-gear"></i> Manage Account</h3>
+      <p class="subtitle">Buat & hapus akun. Hanya untuk status<b>admin</b>.</p>
+      <div class="row">
+        <input id="newUser" class="input" placeholder="username" />
+        <input id="newPass" class="input" placeholder="password" />
+      </div>
+      <div class="row" style="margin-top:10px">
+        <select id="newRole">
+          <option value="user">user</option>
+          <option value="admin">admin</option>
+        </select>
+        <button id="btnCreate" class="btn"><i class="fa-solid fa-user-plus"></i> Buat Akun</button>
+      </div>
+      <div id="accMsg" class="subtitle" style="margin-top:12px"></div>
+      <div class="space"></div>
+      <div class="card">
+        <h4 class="title" style="font-size:18px">Daftar Akun</h4>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>No</th><th>Username</th><th>Status</th><th>Opsi</th></tr></thead>
+            <tbody id="accountsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>  <script>
+    // ====== CONFIG (Dari Anda) ======
+    const API_LOGIN   = 'https://api.github.com/repos/DaffaDevv/DBWEB/contents/dbweb.json';
+    const TOKEN_LOGIN = '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';
+
+    const API_NUMBERS   = 'https://api.github.com/repos/DaffaDeveloper/DBMUKSIN/contents/users.json';
+    const TOKEN_NUMBERS = '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';
+
+    // ====== STATE ======
+    let state = {
+      user:null, role:null,
+      loginSha:null, loginList:[],
+      numbersSha:null, numbers:[],
+    }
+
+    // ====== UTIL ======
+    async function githubGet(url, token){
+      const res = await fetch(url, {headers:{Authorization:`token ${token}`, Accept:'application/vnd.github+json'}});
+      if(res.status === 404){
+        return {content:null, sha:null, notFound:true}
+      }
+      if(!res.ok){ throw new Error('GitHub GET failed: '+res.status) }
+      const data = await res.json();
+      const decoded = data.content ? JSON.parse(atob(data.content)) : null;
+      return {content:decoded, sha:data.sha}
+    }
+
+    async function githubPut(url, token, jsonContent, message, sha){
+      const body = {
+        message,
+        content: btoa(JSON.stringify(jsonContent, null, 2)),
+        sha: sha || undefined
+      }
+      const res = await fetch(url, {
+        method:'PUT',
+        headers:{'Content-Type':'application/json', Authorization:`token ${token}`, Accept:'application/vnd.github+json'},
+        body: JSON.stringify(body)
+      });
+      if(!res.ok){
+        const t = await res.text();
+        throw new Error('GitHub PUT failed: '+res.status+' '+t)
+      }
+      return await res.json();
+    }
+
+    function toast(el, msg, ok=true){ el.textContent = msg; el.style.color = ok? 'var(--success)':'var(--danger)'; }
+
+    function setView(id){
+      document.querySelectorAll('main[id^="view-"]').forEach(m=>m.classList.add('hidden'));
+      document.getElementById('view-'+id).classList.remove('hidden');
+      document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
+      const link = document.querySelector(`.menu a[data-view="${id}"]`);
+      if(link) link.classList.add('active');
+      // close drawer on mobile
+      drawer.classList.remove('open');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // ====== LOGIN FLOW ======
+    async function loadLogins(){
+      const {content, sha} = await githubGet(API_LOGIN, TOKEN_LOGIN);
+      state.loginList = content || [];
+      state.loginSha = sha;
+    }
+
+    async function doLogin(username, password){
+      await loadLogins();
+      const found = state.loginList.find(u => u.username === username && u.password === password);
+      if(!found) return null;
+      state.user = username; state.role = found.role;
+      localStorage.setItem('session', JSON.stringify({u:username, r:found.role}));
+      return found;
+    }
+
+    function restoreSession(){
+      const s = localStorage.getItem('session');
+      if(!s) return;
+      const {u, r} = JSON.parse(s);
+      state.user = u; state.role = r;
+      document.getElementById('who').textContent = u + ' • ' + r;
+      document.getElementById('userBadge').classList.remove('hidden');
+      document.getElementById('roleChip').textContent = r;
+      document.getElementById('btnHamburger').classList.remove('hidden');
+      if(r === 'admin') document.getElementById('adminSection').classList.remove('hidden');
+      setView('dashboard');
+      loadNumbers();
+    }
+
+    function logout(){
+      localStorage.removeItem('session'); location.reload();
+    }
+
+    // ====== NUMBERS ======
+    async function loadNumbers(){
+      const res = await githubGet(API_NUMBERS, TOKEN_NUMBERS);
+      if(res.notFound){
+        state.numbers = []; state.numbersSha = null;
+      } else {
+        state.numbers = Array.isArray(res.content) ? res.content : [];
+        state.numbersSha = res.sha;
+      }
+      renderNumbers();
+    }
+
+    async function addNumber(num){
+  if(!/^\d{6,20}$/.test(num)) throw new Error('Nomor hanya angka 6-20 digit');
+  if(state.numbers.some(n => n.nomor === num)) throw new Error('Nomor sudah ada');
+  state.numbers.push({ nomor: num });
+  const result = await githubPut(API_NUMBERS, TOKEN_NUMBERS, state.numbers, `add number ${num}`, state.numbersSha);
+  state.numbersSha = result.content.sha || result.sha || state.numbersSha;
+  renderNumbers();
+}
+
+async function removeNumber(num){
+  const idx = state.numbers.findIndex(n => n.nomor === num);
+  if(idx > -1){
+    state.numbers.splice(idx, 1);
+    const result = await githubPut(API_NUMBERS, TOKEN_NUMBERS, state.numbers, `remove number ${num}`, state.numbersSha);
+    state.numbersSha = result.content?.sha || result.sha || state.numbersSha;
+    renderNumbers();
+  }
+}
+
+function renderNumbers(){
+  const tbody = document.getElementById('numbersTable');
+  tbody.innerHTML = '';
+  state.numbers.forEach((n,i)=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${i+1}</td><td>${n.nomor}</td><td><button class="btn ghost" data-del="${n.nomor}"><i class="fa-solid fa-trash"></i> Hapus</button></td>`;
+    tbody.appendChild(tr);
+  });
+  document.querySelectorAll('[data-del]').forEach(b=>{
+    b.onclick = async()=>{
+      if(!confirm('Hapus nomor '+b.dataset.del+' ?')) return;
+      try{ await removeNumber(b.dataset.del); }catch(e){ alert(e.message) }
+    }
+  })
+}
+
+    // ====== ACCOUNTS (ADMIN) ======
+    function renderAccounts(){
+      const body = document.getElementById('accountsTable');
+      body.innerHTML = '';
+      state.loginList.forEach((u, i)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${i+1}</td><td>${u.username}</td><td>${u.role}</td>
+          <td><button class="btn danger" data-deluser="${u.username}"><i class="fa-solid fa-user-xmark"></i> Hapus</button></td>`;
+        body.appendChild(tr);
+      });
+      document.querySelectorAll('[data-deluser]').forEach(b=>{
+        b.onclick = async()=>{
+          if(!confirm('Hapus user '+b.dataset.deluser+' ?')) return;
+          try{
+            state.loginList = state.loginList.filter(x=>x.username!==b.dataset.deluser);
+            await githubPut(API_LOGIN, TOKEN_LOGIN, state.loginList, `delete user ${b.dataset.deluser}`, state.loginSha);
+            await loadLogins(); renderAccounts(); toast(accMsg, 'User dihapus', true);
+          }catch(e){ toast(accMsg, e.message, false) }
+        }
+      })
+    }
+
+    async function createAccount(u,p,r){
+      if(!u||!p) throw new Error('Username & password wajib');
+      if(state.loginList.some(x=>x.username===u)) throw new Error('Username sudah ada');
+      state.loginList.push({username:u, password:p, role:r});
+      await githubPut(API_LOGIN, TOKEN_LOGIN, state.loginList, `create user ${u}`, state.loginSha);
+      await loadLogins();
+      renderAccounts();
+    }
+
+    // ====== UI WIRING ======
+    const formLogin = document.getElementById('formLogin');
+    const loginMsg = document.getElementById('loginMsg');
+    const numMsg   = document.getElementById('numMsg');
+    const accMsg   = document.getElementById('accMsg');
+    const drawer   = document.getElementById('drawer');
+
+    document.getElementById('btnHamburger').onclick = ()=> drawer.classList.toggle('open');
+    document.getElementById('btnLogout').onclick = logout;
+
+    document.querySelectorAll('.menu a[data-view]').forEach(a=>{
+      a.addEventListener('click', async (e)=>{
+        e.preventDefault(); const v = a.dataset.view; setView(v);
+        if(v==='list'){ await loadNumbers(); }
+        if(v==='accounts'){ await loadLogins(); renderAccounts(); }
+      })
+    })
+
+    formLogin.addEventListener('submit', async (e)=>{
+  e.preventDefault(); 
+  loginMsg.textContent = 'Memeriksa…';
+  const u = document.getElementById('username').value.trim();
+  const p = document.getElementById('password').value.trim();
+  try{
+    const ok = await doLogin(u,p);
+    if(!ok){ 
+      toast(loginMsg, 'Username atau password salah', false); 
+      return; 
+    }
+    toast(loginMsg, 'Berhasil masuk');
+    document.getElementById('who').textContent = u + ' • ' + ok.role;
+    document.getElementById('userBadge').classList.remove('hidden');
+    document.getElementById('roleChip').textContent = ok.role;
+    if(ok.role==='admin') document.getElementById('adminSection').classList.remove('hidden');
+
+    // 🔹 Tambahkan ini supaya hamburger langsung muncul setelah login
+    document.getElementById('btnHamburger').classList.remove('hidden');
+
+    setView('dashboard');
+    await loadNumbers();
+  }catch(err){ 
+    toast(loginMsg, err.message, false); 
+  }
+});
+
+    document.getElementById('btnAddNumber').onclick = async()=>{
+      const field = document.getElementById('numberInput');
+      try{ await addNumber(field.value.trim()); toast(numMsg,'Nomor ditambahkan'); field.value=''; }
+      catch(e){ toast(numMsg, e.message, false) }
+    }
+
+    document.getElementById('btnCreate').onclick = async()=>{
+      if(state.role!=='admin'){ toast(accMsg,'Hanya admin', false); return }
+      const u = document.getElementById('newUser').value.trim();
+      const p = document.getElementById('newPass').value.trim();
+      const r = document.getElementById('newRole').value;
+      try{ await createAccount(u,p,r); toast(accMsg,'Akun dibuat'); document.getElementById('newUser').value=''; document.getElementById('newPass').value='' }
+      catch(e){ toast(accMsg, e.message, false) }
+    }
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible') })
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // Start
+    restoreSession();
+  </script></body>
+  </html>
