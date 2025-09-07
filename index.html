@@ -128,7 +128,108 @@ tr{ border-radius:12px}
   .illus h2{font-size:38px}
   .row{grid-template-columns:1fr}
 }
+/* Glass Select */
+.select-glass {
+  appearance: none; /* buang style bawaan */
+  background: linear-gradient(90deg, rgba(155,92,255,.18), rgba(0,212,255,.15));
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .25s;
+}
+.select-glass:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+}
+/* Option list di dalam dropdown */
+.select-glass option {
+  background: rgba(15, 20, 35, 0.92);
+  color: var(--text);
+  border: none;
+}
 
+/* Glass Button */
+.glass-btn {
+  background: linear-gradient(90deg, rgba(155,92,255,.18), rgba(0,212,255,.15));
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .25s;
+}
+.glass-btn:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+  transform: translateY(-2px);
+}
+.dropdown-glass {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.dropdown-glass button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* teks + icon di tengah */
+  gap: 10px;
+  background: linear-gradient(90deg, rgba(155,92,255,.18), rgba(0,212,255,.15));
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .25s;
+}
+.dropdown-glass button:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+}
+.dropdown-glass ul {
+  position: absolute;
+  top: 110%; left: 0; right: 0;
+  background: rgba(15,20,35,0.85); /* panel utuh */
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 8px; /* kasih padding biar ada ruang di dalam */
+  z-index: 99;
+}
+
+.dropdown-glass ul li {
+  padding: 12px 14px;
+  margin-bottom: 6px; /* jarak antar item */
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(155,92,255,.18), rgba(0,212,255,.15));
+  border: 1px solid rgba(255,255,255,.12);
+  transition: .25s;
+}
+
+.dropdown-glass ul li:last-child {
+  margin-bottom: 0; /* biar item terakhir gak kepanjangan */
+}
+
+.dropdown-glass ul li:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+}
   </style>
 </head>
 <body>
@@ -159,7 +260,7 @@ tr{ border-radius:12px}
     <section class="login">
       <div class="illus reveal left">
         <span class="badge"><i class="fa-solid fa-database"></i> Storage</span>
-        <h2>Database<span style="background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;background-clip:text;color:transparent">  Ravage</span></h2>
+        <h2>Databaseㅤㅤ <span style="background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;background-clip:text;color:transparent">Ravage</span></h2>
         <p>Menciptakan platform manajemen data nomor yang aman, modern, dan responsif, di mana setiap pengguna dapat menambahkan dan mengakses data dengan mudah, serta memberi kendali penuh kepada admin untuk mengelola akun dan database secara efisien.</p>
         <div class="space"></div>
         <div class="flex">
@@ -239,18 +340,35 @@ tr{ border-radius:12px}
   </main>  <!-- ACCOUNTS (ADMIN) -->  <main id="view-accounts" class="container hidden">
     <section class="card reveal">
       <h3 class="title"><i class="fa-solid fa-user-gear"></i> Manage Account</h3>
-      <p class="subtitle">Buat & hapus akun. Hanya untuk status<b>admin</b>.</p>
+      <p class="subtitle">Buat & hapus akun. Hanya untuk status <b>admin</b>.</p>
       <div class="row">
         <input id="newUser" class="input" placeholder="username" />
         <input id="newPass" class="input" placeholder="password" />
       </div>
-      <div class="row" style="margin-top:10px">
-        <select id="newRole">
-          <option value="user">user</option>
-          <option value="admin">admin</option>
-        </select>
-        <button id="btnCreate" class="btn"><i class="fa-solid fa-user-plus"></i> Buat Akun</button>
-      </div>
+    <div class="row">
+<div class="row" style="margin-top:15px; flex-direction:column; gap:8px; flex:1">
+  <label for="newRole" style="font-size:14px; font-weight:600; color:var(--text); margin-left:4px;">
+    Pilih Status
+  </label>
+  <div class="dropdown-glass">
+    <button id="roleBtn">
+      <span style="display:flex;align-items:center;gap:8px;justify-content:center;width:100%">
+        <i class="fa-solid fa-user"></i> User
+      </span> ▾
+    </button>
+    <ul id="roleList" class="hidden">
+      <li data-value="user"><i class="fa-solid fa-user"></i> User</li>
+      <li data-value="admin"><i class="fa-solid fa-user-shield"></i> Admin</li>
+    </ul>
+  </div>
+  <input type="hidden" id="newRole" value="user">
+</div>
+
+<div class="row" style="margin-top:15px">
+  <button id="btnCreate" class="btn">
+    <i class="fa-solid fa-user-plus"></i> Buat Akun
+  </button>
+</div>
       <div id="accMsg" class="subtitle" style="margin-top:12px"></div>
       <div class="space"></div>
       <div class="card">
@@ -264,12 +382,26 @@ tr{ border-radius:12px}
       </div>
     </section>
   </main>  <script>
-    // ====== CONFIG (Dari Anda) ======
-    const API_LOGIN   = 'https://api.github.com/repos/DaffaDeveloper/dbweb/contents/dbweb.json';
-    const TOKEN_LOGIN = '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';
+  	// Custom Dropdown Role
+const roleBtn = document.getElementById("roleBtn");
+const roleList = document.getElementById("roleList");
+const newRole = document.getElementById("newRole");
 
-    const API_NUMBERS   = 'https://api.github.com/repos/DaffaDeveloper/DBMUKSIN/contents/users.json';
-    const TOKEN_NUMBERS = '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';
+roleBtn.onclick = () => roleList.classList.toggle("hidden");
+
+roleList.querySelectorAll("li").forEach(li => {
+  li.onclick = () => {
+    roleBtn.innerHTML = `<span style="display:flex;align-items:center;gap:8px;justify-content:center;width:100%">${li.innerHTML}</span> ▾`;
+    newRole.value = li.dataset.value;
+    roleList.classList.add("hidden");
+  };
+});
+    // ====== CONFIG (Dari Anda) ======
+    const API_LOGIN   = 'https://api.github.com/repos/DaffaDevv/DBWEB/contents/dbweb.json';
+    const TOKEN_LOGIN = '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';
+
+    const API_NUMBERS   = 'https://api.github.com/repos/DaffaDevv/DBWEBSC/contents/users.json';
+    const TOKEN_NUMBERS = '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';
 
     // ====== STATE ======
     let state = {
@@ -316,7 +448,6 @@ tr{ border-radius:12px}
       document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
       const link = document.querySelector(`.menu a[data-view="${id}"]`);
       if(link) link.classList.add('active');
-      // close drawer on mobile
       drawer.classList.remove('open');
       window.scrollTo({top:0, behavior:'smooth'});
     }
@@ -361,46 +492,53 @@ tr{ border-radius:12px}
       if(res.notFound){
         state.numbers = []; state.numbersSha = null;
       } else {
-        state.numbers = Array.isArray(res.content) ? res.content : [];
+        try {
+          state.numbers = Array.isArray(res.content) ? res.content : [];
+        } catch(e){
+          state.numbers = [];
+        }
         state.numbersSha = res.sha;
       }
       renderNumbers();
     }
 
     async function addNumber(num){
-  if(!/^\d{6,20}$/.test(num)) throw new Error('Nomor hanya angka 6-20 digit');
-  if(state.numbers.some(n => n.nomor === num)) throw new Error('Nomor sudah ada');
-  state.numbers.push({ nomor: num });
-  const result = await githubPut(API_NUMBERS, TOKEN_NUMBERS, state.numbers, `add number ${num}`, state.numbersSha);
-  state.numbersSha = result.content.sha || result.sha || state.numbersSha;
-  renderNumbers();
-}
-
-async function removeNumber(num){
-  const idx = state.numbers.findIndex(n => n.nomor === num);
-  if(idx > -1){
-    state.numbers.splice(idx, 1);
-    const result = await githubPut(API_NUMBERS, TOKEN_NUMBERS, state.numbers, `remove number ${num}`, state.numbersSha);
-    state.numbersSha = result.content?.sha || result.sha || state.numbersSha;
-    renderNumbers();
-  }
-}
-
-function renderNumbers(){
-  const tbody = document.getElementById('numbersTable');
-  tbody.innerHTML = '';
-  state.numbers.forEach((n,i)=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${i+1}</td><td>${n.nomor}</td><td><button class="btn ghost" data-del="${n.nomor}"><i class="fa-solid fa-trash"></i> Hapus</button></td>`;
-    tbody.appendChild(tr);
-  });
-  document.querySelectorAll('[data-del]').forEach(b=>{
-    b.onclick = async()=>{
-      if(!confirm('Hapus nomor '+b.dataset.del+' ?')) return;
-      try{ await removeNumber(b.dataset.del); }catch(e){ alert(e.message) }
+      if(!/^\d{6,20}$/.test(num)) throw new Error('Nomor hanya angka 6-20 digit');
+      if(state.numbers.some(n => n.nomor === num)) throw new Error('Nomor sudah ada');
+      state.numbers.push({ nomor: num });
+      const result = await githubPut(API_NUMBERS, TOKEN_NUMBERS, state.numbers, `add number ${num}`, state.numbersSha);
+      state.numbersSha = result.sha || state.numbersSha;
+      renderNumbers();
     }
-  })
-}
+
+    async function removeNumber(num){
+      const idx = state.numbers.findIndex(n => n.nomor === num);
+      if(idx > -1){
+        state.numbers.splice(idx, 1);
+        const result = await githubPut(API_NUMBERS, TOKEN_NUMBERS, state.numbers, `remove number ${num}`, state.numbersSha);
+        state.numbersSha = result.sha || state.numbersSha;
+        renderNumbers();
+      }
+    }
+
+    function renderNumbers(){
+      console.log("Numbers:", state.numbers); // debug
+      const tbody = document.getElementById('numbersTable');
+      tbody.innerHTML = '';
+      state.numbers.forEach((n,i)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${i+1}</td><td>${n.nomor}</td>
+  <td><button class="btn danger" data-del="${n.nomor}">
+  <i class="fa-solid fa-trash"></i> Hapus</button></td>`;
+        tbody.appendChild(tr);
+      });
+      document.querySelectorAll('[data-del]').forEach(b=>{
+        b.onclick = async()=>{
+          if(!confirm('Hapus nomor '+b.dataset.del+' ?')) return;
+          try{ await removeNumber(b.dataset.del); }catch(e){ alert(e.message) }
+        }
+      })
+    }
 
     // ====== ACCOUNTS (ADMIN) ======
     function renderAccounts(){
@@ -452,31 +590,28 @@ function renderNumbers(){
     })
 
     formLogin.addEventListener('submit', async (e)=>{
-  e.preventDefault(); 
-  loginMsg.textContent = 'Memeriksa…';
-  const u = document.getElementById('username').value.trim();
-  const p = document.getElementById('password').value.trim();
-  try{
-    const ok = await doLogin(u,p);
-    if(!ok){ 
-      toast(loginMsg, 'Username atau password salah', false); 
-      return; 
-    }
-    toast(loginMsg, 'Berhasil masuk');
-    document.getElementById('who').textContent = u + ' • ' + ok.role;
-    document.getElementById('userBadge').classList.remove('hidden');
-    document.getElementById('roleChip').textContent = ok.role;
-    if(ok.role==='admin') document.getElementById('adminSection').classList.remove('hidden');
-
-    // 🔹 Tambahkan ini supaya hamburger langsung muncul setelah login
-    document.getElementById('btnHamburger').classList.remove('hidden');
-
-    setView('dashboard');
-    await loadNumbers();
-  }catch(err){ 
-    toast(loginMsg, err.message, false); 
-  }
-});
+      e.preventDefault(); 
+      loginMsg.textContent = 'Memeriksa…';
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+      try{
+        const ok = await doLogin(u,p);
+        if(!ok){ 
+          toast(loginMsg, 'Username atau password salah', false); 
+          return; 
+        }
+        toast(loginMsg, 'Berhasil masuk');
+        document.getElementById('who').textContent = u + ' • ' + ok.role;
+        document.getElementById('userBadge').classList.remove('hidden');
+        document.getElementById('roleChip').textContent = ok.role;
+        if(ok.role==='admin') document.getElementById('adminSection').classList.remove('hidden');
+        document.getElementById('btnHamburger').classList.remove('hidden');
+        setView('dashboard');
+        await loadNumbers();
+      }catch(err){ 
+        toast(loginMsg, err.message, false); 
+      }
+    });
 
     document.getElementById('btnAddNumber').onclick = async()=>{
       const field = document.getElementById('numberInput');
@@ -501,5 +636,6 @@ function renderNumbers(){
 
     // Start
     restoreSession();
-  </script></body>
+  </script>
+</body>
 </html>
