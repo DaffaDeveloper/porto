@@ -3,7 +3,7 @@ header("Content-Type: application/json");
 
 // CONFIG
 $GITHUB_API = "https://api.github.com/repos/DaffaDeveloper/porto/contents/upload/";
-$TOKEN = "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"; // ganti tokenmu
+$TOKEN = "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"; // ganti tokenmu
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(["status" => "error", "message" => "Use POST method"]);
@@ -60,4 +60,5 @@ if (isset($res['content']['download_url'])) {
         "response" => $res
     ]);
 }
+
 
