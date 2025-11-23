@@ -4,7 +4,7 @@ import axios from "axios";
 const app = express();
 
 // ---- GANTI TOKEN BOT KAMU DI SINI ----
-const BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"; 
+const BOT_TOKEN = "8489516593:AAFQv2fOZUZuiYU2yNjKaimdj4cwYTLqhKE"; 
 // --------------------------------------
 
 app.get("/api/bot", async (req, res) => {
@@ -41,3 +41,4 @@ app.get("/api/bot", async (req, res) => {
 app.listen(3000, () => {
   console.log("API ready! http://daffa-dev.my.id/api/bot");
 });
+
