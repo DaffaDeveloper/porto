@@ -2,18 +2,14 @@
 import axios from "axios";
 
 const app = express();
-
-// ---- GANTI TOKEN BOT KAMU DI SINI ----
-const BOT_TOKEN = "8489516593:AAFQv2fOZUZuiYU2yNjKaimdj4cwYTLqhKE"; 
-// --------------------------------------
+const BOT_TOKEN = "8489516593:AAFQv2fOZUZuiYU2yNjKaimdj4cwYTLqhKE";
 
 app.get("/api/bot", async (req, res) => {
-  const target = req.query.target;
-  const message = req.query.message;
+  const { target, message } = req.query;
 
   if (!target || !message) {
     return res.json({
-      success: false,
+      status: false,
       message: "Parameter ?target= & ?message= wajib diisi"
     });
   }
@@ -25,20 +21,23 @@ app.get("/api/bot", async (req, res) => {
       text: message
     });
 
-    res.json({
-      success: true,
-      result: send.data
+    return res.json({
+      status: true,
+      message: "Pesan berhasil dikirim",
+      data: {
+        chat_id: target,
+        text: message,
+        telegram_result: send.data
+      }
     });
 
   } catch (err) {
-    res.json({
-      success: false,
+    return res.json({
+      status: false,
+      message: "Gagal mengirim pesan",
       error: err.response?.data || err.message
     });
   }
 });
 
-app.listen(3000, () => {
-  console.log("API ready! http://daffa-dev.my.id/api/bot");
-});
-
+app.listen(3000, () => console.log("API Online"));
